@@ -1,0 +1,11 @@
+{
+  "name": "hotel-atenas-sys",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:server": "pnpm --filter server start:dev",
+    "dev:client": "pnpm --filter client dev",
+    "build:server": "pnpm --filter server build",
+    "build:client": "pnpm --filter client build"
+  }
+}

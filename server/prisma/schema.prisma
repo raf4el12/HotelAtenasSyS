@@ -1,0 +1,449 @@
+// ============================================================================
+// Hotel Atenas - Property Management System (PMS)
+// ============================================================================
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ========================== ENUMS ==========================================
+
+enum ShiftType {
+  MORNING
+  AFTERNOON
+  NIGHT
+  ROTATING
+}
+
+enum Role {
+  ADMIN
+  RECEPTIONIST
+  HOUSEKEEPING
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  CLEANING
+  MAINTENANCE
+}
+
+enum RoomCategory {
+  NORMAL
+  PREMIUM
+}
+
+enum StayMode {
+  HOURLY
+  OVERNIGHT
+  PACKAGE
+}
+
+enum StayStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CHECKED_IN
+  CANCELLED
+  NO_SHOW
+}
+
+enum PaymentMethod {
+  CASH
+  YAPE
+}
+
+enum PaymentType {
+  STAY_PAYMENT
+  RESERVATION_DEPOSIT
+  POS_SALE
+  ROOM_CHARGE
+  ROOM_CHARGE_SETTLE
+}
+
+enum ProductCategory {
+  BEVERAGE_WATER
+  BEVERAGE_ENERGY
+  BEVERAGE_ALCOHOL
+  SNACK_CANDY
+  SNACK_SAVORY
+}
+
+enum ProductStatus {
+  ACTIVE
+  DISCONTINUED
+}
+
+// ========================== USUARIOS Y AUTENTICACIÓN =======================
+
+model User {
+  id       String  @id @default(cuid())
+  email    String  @unique
+  password String
+  role     Role
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profile Profile?
+
+  staysCreated        Stay[]        @relation("StayCreatedBy")
+  staysCheckedOut     Stay[]        @relation("StayCheckedOutBy")
+  reservationsCreated Reservation[] @relation("ReservationCreatedBy")
+  paymentsRegistered  Payment[]     @relation("PaymentRegisteredBy")
+  salesCreated        Sale[]        @relation("SaleCreatedBy")
+  roomStatusChanges   RoomStatusLog[]
+
+  @@map("users")
+}
+
+model Profile {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  firstName String
+  lastName  String
+  dni       String  @unique
+  phone     String?
+  avatarUrl String?
+
+  birthDate DateTime?
+
+  address  String?
+  district String?
+  city     String?
+  province String?
+
+  emergencyContactName     String?
+  emergencyContactPhone    String?
+  emergencyContactRelation String?
+
+  shift      ShiftType?
+  shiftNotes String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("profiles")
+}
+
+// ========================== INFRAESTRUCTURA ==================================
+
+model Floor {
+  id     String @id @default(cuid())
+  name   String @unique
+  number Int    @unique
+  rooms  Room[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  @@map("floors")
+}
+
+model Room {
+  id       String       @id @default(cuid())
+  number   String       @unique
+  category RoomCategory @default(NORMAL)
+  status   RoomStatus   @default(AVAILABLE)
+
+  floorId String
+  floor   Floor  @relation(fields: [floorId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  stays        Stay[]
+  reservations Reservation[]
+  statusLogs   RoomStatusLog[]
+
+  @@index([floorId])
+  @@index([status])
+  @@map("rooms")
+}
+
+model RoomStatusLog {
+  id             String     @id @default(cuid())
+  roomId         String
+  room           Room       @relation(fields: [roomId], references: [id])
+  previousStatus RoomStatus
+  newStatus      RoomStatus
+  changedById    String
+  changedBy      User       @relation(fields: [changedById], references: [id])
+  createdAt      DateTime   @default(now())
+
+  @@index([roomId])
+  @@map("room_status_logs")
+}
+
+// ========================== HUÉSPEDES ========================================
+
+model Guest {
+  id        String @id @default(cuid())
+  dni       String @unique
+  firstName String
+  lastName  String
+  phone     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stays        Stay[]
+  reservations Reservation[]
+
+  @@map("guests")
+}
+
+// ========================== TARIFAS DINÁMICAS =================================
+
+model RateRule {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+
+  stayMode    StayMode
+  category    RoomCategory
+
+  price       Decimal      @db.Decimal(10, 2)
+  durationMin Int?
+
+  validFrom DateTime?
+  validTo   DateTime?
+
+  priority  Int      @default(0)
+  isActive  Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stays Stay[]
+
+  @@index([stayMode, category, isActive])
+  @@map("rate_rules")
+}
+
+model HotelConfig {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+
+  updatedAt DateTime @updatedAt
+
+  @@map("hotel_config")
+}
+
+// ========================== PAQUETES PROMOCIONALES ============================
+
+model Package {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+
+  category    RoomCategory
+  stayMode    StayMode
+  totalPrice  Decimal      @db.Decimal(10, 2)
+
+  isActive  Boolean  @default(true)
+  validFrom DateTime?
+  validTo   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items PackageItem[]
+  stays Stay[]
+
+  @@map("packages")
+}
+
+model PackageItem {
+  id        String  @id @default(cuid())
+  packageId String
+  package   Package @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  quantity  Int     @default(1)
+
+  @@unique([packageId, productId])
+  @@map("package_items")
+}
+
+// ========================== POS E INVENTARIO ==================================
+
+model Product {
+  id          String          @id @default(cuid())
+  name        String
+  category    ProductCategory
+  price       Decimal         @db.Decimal(10, 2)
+  stock       Int             @default(0)
+  minStock    Int             @default(5)
+  status      ProductStatus   @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  saleItems    SaleItem[]
+  packageItems PackageItem[]
+
+  @@map("products")
+}
+
+model Sale {
+  id     String @id @default(cuid())
+
+  stayId String?
+  stay   Stay?   @relation(fields: [stayId], references: [id])
+
+  subtotal Decimal @db.Decimal(10, 2)
+
+  createdById String
+  createdBy   User   @relation("SaleCreatedBy", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+
+  items    SaleItem[]
+  payments Payment[]
+
+  @@index([stayId])
+  @@map("sales")
+}
+
+model SaleItem {
+  id        String  @id @default(cuid())
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10, 2)
+  lineTotal Decimal @db.Decimal(10, 2)
+
+  @@map("sale_items")
+}
+
+// ========================== ESTADÍAS =========================================
+
+model Stay {
+  id String @id @default(cuid())
+
+  guestId String
+  guest   Guest  @relation(fields: [guestId], references: [id])
+
+  roomId String
+  room   Room   @relation(fields: [roomId], references: [id])
+
+  stayMode   StayMode
+  rateRuleId String?
+  rateRule   RateRule? @relation(fields: [rateRuleId], references: [id])
+  packageId  String?
+  package    Package?  @relation(fields: [packageId], references: [id])
+
+  stayPrice Decimal @db.Decimal(10, 2)
+
+  checkIn  DateTime @default(now())
+  checkOut DateTime
+
+  actualCheckOut DateTime?
+
+  status StayStatus @default(ACTIVE)
+
+  reservationId String?      @unique
+  reservation   Reservation? @relation(fields: [reservationId], references: [id])
+
+  createdById    String
+  createdBy      User    @relation("StayCreatedBy", fields: [createdById], references: [id])
+  checkedOutById String?
+  checkedOutBy   User?   @relation("StayCheckedOutBy", fields: [checkedOutById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payments Payment[]
+  sales    Sale[]
+
+  @@index([guestId])
+  @@index([roomId])
+  @@index([status])
+  @@index([checkIn])
+  @@map("stays")
+}
+
+// ========================== RESERVAS =========================================
+
+model Reservation {
+  id String @id @default(cuid())
+
+  guestId String
+  guest   Guest  @relation(fields: [guestId], references: [id])
+
+  roomId String
+  room   Room   @relation(fields: [roomId], references: [id])
+
+  stayMode StayMode
+
+  scheduledCheckIn  DateTime
+  scheduledCheckOut DateTime
+
+  estimatedPrice Decimal @db.Decimal(10, 2)
+
+  status ReservationStatus @default(PENDING)
+  notes  String?
+
+  createdById String
+  createdBy   User   @relation("ReservationCreatedBy", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payments Payment[]
+  stay     Stay?
+
+  @@index([roomId, scheduledCheckIn])
+  @@index([status])
+  @@map("reservations")
+}
+
+// ========================== PAGOS ============================================
+
+model Payment {
+  id     String        @id @default(cuid())
+  amount Decimal       @db.Decimal(10, 2)
+  method PaymentMethod
+  type   PaymentType
+
+  stayId        String?
+  stay          Stay?        @relation(fields: [stayId], references: [id])
+  reservationId String?
+  reservation   Reservation? @relation(fields: [reservationId], references: [id])
+  saleId        String?
+  sale          Sale?        @relation(fields: [saleId], references: [id])
+
+  notes String?
+
+  registeredById String
+  registeredBy   User   @relation("PaymentRegisteredBy", fields: [registeredById], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([stayId])
+  @@index([reservationId])
+  @@index([saleId])
+  @@index([method])
+  @@index([createdAt])
+  @@map("payments")
+}
