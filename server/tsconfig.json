@@ -19,5 +19,10 @@
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true
   },
-  "exclude": ["prisma.config.ts", "src/generated"]
+  "exclude": [
+    "prisma.config.ts",
+    "src/generated",
+    "dist",
+    "node_modules"
+  ]
 }

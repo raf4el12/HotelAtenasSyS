@@ -4,6 +4,7 @@ import { PrismaModule } from './prisma/prisma.module.js';
 import { RedisModule } from './shared/redis/redis.module.js';
 import { AuthModule } from './modules/auth/application/auth.module.js';
 import { UsersModule } from './modules/users/application/users.module.js';
+import { FloorsModule } from './modules/floors/application/floors.module.js';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UsersModule } from './modules/users/application/users.module.js';
     RedisModule,
     AuthModule,
     UsersModule,
+    FloorsModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
