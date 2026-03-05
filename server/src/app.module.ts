@@ -5,6 +5,7 @@ import { RedisModule } from './shared/redis/redis.module.js';
 import { AuthModule } from './modules/auth/application/auth.module.js';
 import { UsersModule } from './modules/users/application/users.module.js';
 import { FloorsModule } from './modules/floors/application/floors.module.js';
+import { RoomsModule } from './modules/rooms/application/rooms.module.js';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { FloorsModule } from './modules/floors/application/floors.module.js';
     AuthModule,
     UsersModule,
     FloorsModule,
+    RoomsModule,
   ],
 })
 export class AppModule { }
