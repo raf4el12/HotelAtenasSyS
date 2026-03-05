@@ -8,6 +8,7 @@ import { FloorsModule } from './modules/floors/application/floors.module.js';
 import { RoomsModule } from './modules/rooms/application/rooms.module.js';
 import { GuestsModule } from './modules/guests/application/guests.module.js';
 import { RateRulesModule } from './modules/rate-rules/application/rate-rules.module.js';
+import { ProductsModule } from './modules/products/application/products.module.js';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { RateRulesModule } from './modules/rate-rules/application/rate-rules.mod
     RoomsModule,
     GuestsModule,
     RateRulesModule,
+    ProductsModule,
   ],
 })
 export class AppModule { }
