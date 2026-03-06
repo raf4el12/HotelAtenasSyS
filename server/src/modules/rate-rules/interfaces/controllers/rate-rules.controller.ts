@@ -18,7 +18,9 @@ import { FindAllRateRulesUseCase } from '../../application/use-cases/find-all-ra
 import { FindRateRuleByIdUseCase } from '../../application/use-cases/find-rate-rule-by-id.use-case.js';
 import { UpdateRateRuleUseCase } from '../../application/use-cases/update-rate-rule.use-case.js';
 import { DeleteRateRuleUseCase } from '../../application/use-cases/delete-rate-rule.use-case.js';
-import { ManageConfigUseCase } from '../../application/use-cases/manage-config.use-case.js';
+import { FindAllConfigUseCase } from '../../application/use-cases/find-all-config.use-case.js';
+import { FindConfigByKeyUseCase } from '../../application/use-cases/find-config-by-key.use-case.js';
+import { UpsertConfigUseCase } from '../../application/use-cases/upsert-config.use-case.js';
 import { CreateRateRuleDto } from '../../application/dto/create-rate-rule.dto.js';
 import { UpdateRateRuleDto } from '../../application/dto/update-rate-rule.dto.js';
 import { FindAllRateRulesDto } from '../../application/dto/find-all-rate-rules.dto.js';
@@ -35,7 +37,9 @@ export class RateRulesController {
         private readonly findRateRuleByIdUseCase: FindRateRuleByIdUseCase,
         private readonly updateRateRuleUseCase: UpdateRateRuleUseCase,
         private readonly deleteRateRuleUseCase: DeleteRateRuleUseCase,
-        private readonly manageConfigUseCase: ManageConfigUseCase,
+        private readonly findAllConfigUseCase: FindAllConfigUseCase,
+        private readonly findConfigByKeyUseCase: FindConfigByKeyUseCase,
+        private readonly upsertConfigUseCase: UpsertConfigUseCase,
     ) { }
 
     @Post()
@@ -59,7 +63,7 @@ export class RateRulesController {
     @ApiOperation({ summary: 'Obtener todas las configuraciones del hotel' })
     @ApiResponse({ status: 200, description: 'Lista de configuraciones', type: [HotelConfigResponseDto] })
     async findAllConfig() {
-        return this.manageConfigUseCase.findAll();
+        return this.findAllConfigUseCase.execute();
     }
 
     @Get('config/:key')
@@ -67,7 +71,7 @@ export class RateRulesController {
     @ApiOperation({ summary: 'Obtener configuración por clave' })
     @ApiResponse({ status: 200, description: 'Configuración encontrada', type: HotelConfigResponseDto })
     async findConfigByKey(@Param('key') key: string) {
-        return this.manageConfigUseCase.findByKey(key);
+        return this.findConfigByKeyUseCase.execute(key);
     }
 
     @Post('config')
@@ -75,7 +79,7 @@ export class RateRulesController {
     @ApiOperation({ summary: 'Crear o actualizar configuración del hotel' })
     @ApiResponse({ status: 201, description: 'Configuración guardada', type: HotelConfigResponseDto })
     async upsertConfig(@Body() dto: UpsertConfigDto) {
-        return this.manageConfigUseCase.upsert(dto);
+        return this.upsertConfigUseCase.execute(dto);
     }
 
     @Get(':id')

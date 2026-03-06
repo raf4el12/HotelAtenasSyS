@@ -6,7 +6,6 @@ import type {
     UpdateRateRuleData,
 } from '../../domain/repositories/rate-rule.repository.js';
 import { RateRuleEntity } from '../../domain/entities/rate-rule.entity.js';
-import { HotelConfigEntity } from '../../domain/entities/hotel-config.entity.js';
 import type { StayMode } from '../../../../shared/domain/enums/stay-mode.enum.js';
 import type { RoomCategory } from '../../../../shared/domain/enums/room-category.enum.js';
 import type { PaginatedResult } from '../../../../shared/domain/interfaces/paginated-result.interface.js';
@@ -28,15 +27,6 @@ function mapToRateRuleEntity(prismaRule: any): RateRuleEntity {
     rule.createdAt = prismaRule.createdAt;
     rule.updatedAt = prismaRule.updatedAt;
     return rule;
-}
-
-function mapToConfigEntity(prismaConfig: any): HotelConfigEntity {
-    const config = new HotelConfigEntity();
-    config.id = prismaConfig.id;
-    config.key = prismaConfig.key;
-    config.value = prismaConfig.value;
-    config.updatedAt = prismaConfig.updatedAt;
-    return config;
 }
 
 @Injectable()
@@ -97,26 +87,5 @@ export class PrismaRateRuleRepository implements IRateRuleRepository {
 
     async delete(id: string): Promise<void> {
         await this.prisma.rateRule.delete({ where: { id } });
-    }
-
-    // HotelConfig methods
-
-    async findAllConfig(): Promise<HotelConfigEntity[]> {
-        const configs = await this.prisma.hotelConfig.findMany({ orderBy: { key: 'asc' } });
-        return configs.map(mapToConfigEntity);
-    }
-
-    async findConfigByKey(key: string): Promise<HotelConfigEntity | null> {
-        const config = await this.prisma.hotelConfig.findUnique({ where: { key } });
-        return config ? mapToConfigEntity(config) : null;
-    }
-
-    async upsertConfig(key: string, value: string): Promise<HotelConfigEntity> {
-        const config = await this.prisma.hotelConfig.upsert({
-            where: { key },
-            update: { value },
-            create: { key, value },
-        });
-        return mapToConfigEntity(config);
     }
 }

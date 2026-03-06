@@ -1,5 +1,4 @@
 import type { RateRuleEntity } from '../entities/rate-rule.entity.js';
-import type { HotelConfigEntity } from '../entities/hotel-config.entity.js';
 import type { StayMode } from '../../../../shared/domain/enums/stay-mode.enum.js';
 import type { RoomCategory } from '../../../../shared/domain/enums/room-category.enum.js';
 import type { PaginatedResult } from '../../../../shared/domain/interfaces/paginated-result.interface.js';
@@ -39,9 +38,4 @@ export interface IRateRuleRepository {
     ): Promise<PaginatedResult<RateRuleEntity>>;
     update(id: string, data: UpdateRateRuleData): Promise<RateRuleEntity>;
     delete(id: string): Promise<void>;
-
-    // HotelConfig
-    findAllConfig(): Promise<HotelConfigEntity[]>;
-    findConfigByKey(key: string): Promise<HotelConfigEntity | null>;
-    upsertConfig(key: string, value: string): Promise<HotelConfigEntity>;
 }

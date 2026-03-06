@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import type { IReservationRepository } from '../../domain/repositories/reservation.repository.js';
 import type { IGuestRepository } from '../../../guests/domain/repositories/guest.repository.js';
 import type { IRoomRepository } from '../../../rooms/domain/repositories/room.repository.js';
@@ -20,6 +20,15 @@ export class CreateReservationUseCase {
 
         const room = await this.roomRepository.findById(dto.roomId);
         if (!room) throw new NotFoundException('Habitación no encontrada');
+
+        const overlapping = await this.reservationRepository.findOverlapping(
+            dto.roomId,
+            new Date(dto.scheduledCheckIn),
+            new Date(dto.scheduledCheckOut),
+        );
+        if (overlapping.length > 0) {
+            throw new ConflictException('Ya existe una reserva para esta habitación en las fechas indicadas');
+        }
 
         const reservation = await this.reservationRepository.create({
             guestId: dto.guestId,

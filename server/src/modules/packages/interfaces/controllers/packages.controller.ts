@@ -18,7 +18,8 @@ import { FindAllPackagesUseCase } from '../../application/use-cases/find-all-pac
 import { FindPackageByIdUseCase } from '../../application/use-cases/find-package-by-id.use-case.js';
 import { UpdatePackageUseCase } from '../../application/use-cases/update-package.use-case.js';
 import { DeletePackageUseCase } from '../../application/use-cases/delete-package.use-case.js';
-import { ManagePackageItemsUseCase } from '../../application/use-cases/manage-package-items.use-case.js';
+import { AddPackageItemUseCase } from '../../application/use-cases/add-package-item.use-case.js';
+import { RemovePackageItemUseCase } from '../../application/use-cases/remove-package-item.use-case.js';
 import { CreatePackageDto, PackageItemInputDto } from '../../application/dto/create-package.dto.js';
 import { UpdatePackageDto } from '../../application/dto/update-package.dto.js';
 import { FindAllPackagesDto } from '../../application/dto/find-all-packages.dto.js';
@@ -33,7 +34,8 @@ export class PackagesController {
         private readonly findPackageByIdUseCase: FindPackageByIdUseCase,
         private readonly updatePackageUseCase: UpdatePackageUseCase,
         private readonly deletePackageUseCase: DeletePackageUseCase,
-        private readonly managePackageItemsUseCase: ManagePackageItemsUseCase,
+        private readonly addPackageItemUseCase: AddPackageItemUseCase,
+        private readonly removePackageItemUseCase: RemovePackageItemUseCase,
     ) { }
 
     @Post()
@@ -76,7 +78,7 @@ export class PackagesController {
     @ApiResponse({ status: 201, description: 'Producto agregado', type: PackageResponseDto })
     @ApiResponse({ status: 404, description: 'Paquete no encontrado' })
     async addItem(@Param('id') id: string, @Body() dto: PackageItemInputDto) {
-        return this.managePackageItemsUseCase.addItem(id, dto);
+        return this.addPackageItemUseCase.execute(id, dto);
     }
 
     @Delete(':id/items/:productId')
@@ -86,7 +88,7 @@ export class PackagesController {
     @ApiResponse({ status: 200, description: 'Producto eliminado del paquete', type: PackageResponseDto })
     @ApiResponse({ status: 404, description: 'Paquete no encontrado' })
     async removeItem(@Param('id') id: string, @Param('productId') productId: string) {
-        return this.managePackageItemsUseCase.removeItem(id, productId);
+        return this.removePackageItemUseCase.execute(id, productId);
     }
 
     @Delete(':id')

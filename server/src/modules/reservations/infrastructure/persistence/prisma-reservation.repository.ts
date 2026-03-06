@@ -3,7 +3,7 @@ import { PrismaService } from '../../../../prisma/prisma.service.js';
 import type { IReservationRepository, CreateReservationData } from '../../domain/repositories/reservation.repository.js';
 import { ReservationEntity } from '../../domain/entities/reservation.entity.js';
 import type { StayMode } from '../../../../shared/domain/enums/stay-mode.enum.js';
-import type { ReservationStatus } from '../../../../shared/domain/enums/reservation-status.enum.js';
+import { ReservationStatus } from '../../../../shared/domain/enums/reservation-status.enum.js';
 import type { PaginatedResult } from '../../../../shared/domain/interfaces/paginated-result.interface.js';
 import type { PaginationParams } from '../../../../shared/domain/interfaces/pagination-params.interface.js';
 
@@ -104,5 +104,20 @@ export class PrismaReservationRepository implements IReservationRepository {
             include: reservationInclude,
         });
         return mapToReservationEntity(res);
+    }
+
+    async findOverlapping(roomId: string, checkIn: Date, checkOut: Date): Promise<ReservationEntity[]> {
+        const reservations = await this.prisma.reservation.findMany({
+            where: {
+                roomId,
+                status: {
+                    notIn: [ReservationStatus.CANCELLED, ReservationStatus.NO_SHOW],
+                },
+                scheduledCheckIn: { lt: checkOut },
+                scheduledCheckOut: { gt: checkIn },
+            },
+            include: reservationInclude,
+        });
+        return reservations.map(mapToReservationEntity);
     }
 }

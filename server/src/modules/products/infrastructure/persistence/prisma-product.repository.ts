@@ -84,9 +84,22 @@ export class PrismaProductRepository implements IProductRepository {
     async findLowStock(): Promise<ProductEntity[]> {
         const products = await this.prisma.$queryRaw<any[]>`
       SELECT * FROM products
-      WHERE stock <= "minStock" AND status = 'ACTIVE'
+      WHERE stock <= min_stock AND status = 'ACTIVE'
       ORDER BY stock ASC
     `;
-        return products.map(mapToProductEntity);
+        return products.map((row) => {
+            const mapped: any = {
+                id: row.id,
+                name: row.name,
+                category: row.category,
+                price: row.price,
+                stock: row.stock,
+                minStock: row.min_stock,
+                status: row.status,
+                createdAt: row.created_at,
+                updatedAt: row.updated_at,
+            };
+            return mapToProductEntity(mapped);
+        });
     }
 }

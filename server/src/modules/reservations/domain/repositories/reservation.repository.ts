@@ -24,4 +24,5 @@ export interface IReservationRepository {
     ): Promise<PaginatedResult<ReservationEntity>>;
     updateStatus(id: string, status: ReservationStatus): Promise<ReservationEntity>;
     update(id: string, data: Partial<CreateReservationData>): Promise<ReservationEntity>;
+    findOverlapping(roomId: string, checkIn: Date, checkOut: Date): Promise<ReservationEntity[]>;
 }

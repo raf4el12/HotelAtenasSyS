@@ -5,7 +5,8 @@ import { FindAllPackagesUseCase } from './use-cases/find-all-packages.use-case.j
 import { FindPackageByIdUseCase } from './use-cases/find-package-by-id.use-case.js';
 import { UpdatePackageUseCase } from './use-cases/update-package.use-case.js';
 import { DeletePackageUseCase } from './use-cases/delete-package.use-case.js';
-import { ManagePackageItemsUseCase } from './use-cases/manage-package-items.use-case.js';
+import { AddPackageItemUseCase } from './use-cases/add-package-item.use-case.js';
+import { RemovePackageItemUseCase } from './use-cases/remove-package-item.use-case.js';
 import { PackagesController } from '../interfaces/controllers/packages.controller.js';
 
 @Module({
@@ -17,7 +18,8 @@ import { PackagesController } from '../interfaces/controllers/packages.controlle
         FindPackageByIdUseCase,
         UpdatePackageUseCase,
         DeletePackageUseCase,
-        ManagePackageItemsUseCase,
+        AddPackageItemUseCase,
+        RemovePackageItemUseCase,
     ],
     exports: ['IPackageRepository'],
 })
