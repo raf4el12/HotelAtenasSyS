@@ -10,6 +10,8 @@ import { GuestsModule } from './modules/guests/application/guests.module.js';
 import { RateRulesModule } from './modules/rate-rules/application/rate-rules.module.js';
 import { ProductsModule } from './modules/products/application/products.module.js';
 import { PackagesModule } from './modules/packages/application/packages.module.js';
+import { StaysModule } from './modules/stays/application/stays.module.js';
+import { ReservationsModule } from './modules/reservations/application/reservations.module.js';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { PackagesModule } from './modules/packages/application/packages.module.j
     RateRulesModule,
     ProductsModule,
     PackagesModule,
+    StaysModule,
+    ReservationsModule,
   ],
 })
 export class AppModule { }
