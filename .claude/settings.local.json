@@ -3,7 +3,8 @@
     "allow": [
       "Bash(pnpm add:*)",
       "Bash(npx nest:*)",
-      "Bash(pnpm:*)"
+      "Bash(pnpm:*)",
+      "Bash(npx skills:*)"
     ]
   }
 }

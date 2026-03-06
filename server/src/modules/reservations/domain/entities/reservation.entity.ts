@@ -1,5 +1,6 @@
 import type { StayMode } from '../../../../shared/domain/enums/stay-mode.enum.js';
 import { ReservationStatus } from '../../../../shared/domain/enums/reservation-status.enum.js';
+import type { ReservationSource } from '../../../../shared/domain/enums/reservation-source.enum.js';
 
 export class ReservationEntity {
     id: string;
@@ -11,6 +12,13 @@ export class ReservationEntity {
     estimatedPrice: number;
     status: ReservationStatus;
     notes: string | null;
+    source: ReservationSource;
+    contactPhone: string | null;
+    contactEmail: string | null;
+    guestCount: number;
+    cancelledAt: Date | null;
+    cancelledById: string | null;
+    cancelReason: string | null;
     createdById: string;
     createdAt: Date;
     updatedAt: Date;

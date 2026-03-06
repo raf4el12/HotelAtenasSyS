@@ -16,6 +16,10 @@ function mapToRoomEntity(prismaRoom: any): RoomEntity {
     room.number = prismaRoom.number;
     room.category = prismaRoom.category;
     room.status = prismaRoom.status;
+    room.maxGuests = prismaRoom.maxGuests;
+    room.bedType = prismaRoom.bedType;
+    room.hasWindow = prismaRoom.hasWindow;
+    room.notes = prismaRoom.notes;
     room.floorId = prismaRoom.floorId;
     room.createdAt = prismaRoom.createdAt;
     room.updatedAt = prismaRoom.updatedAt;

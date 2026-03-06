@@ -24,6 +24,9 @@ function mapToStayEntity(prismaStay: any): StayEntity {
     stay.rateRuleId = prismaStay.rateRuleId;
     stay.packageId = prismaStay.packageId;
     stay.stayPrice = Number(prismaStay.stayPrice);
+    stay.guestCount = prismaStay.guestCount;
+    stay.vehiclePlate = prismaStay.vehiclePlate;
+    stay.notes = prismaStay.notes;
     stay.checkIn = prismaStay.checkIn;
     stay.checkOut = prismaStay.checkOut;
     stay.actualCheckOut = prismaStay.actualCheckOut;
@@ -31,6 +34,9 @@ function mapToStayEntity(prismaStay: any): StayEntity {
     stay.reservationId = prismaStay.reservationId;
     stay.createdById = prismaStay.createdById;
     stay.checkedOutById = prismaStay.checkedOutById;
+    stay.cancelledAt = prismaStay.cancelledAt;
+    stay.cancelledById = prismaStay.cancelledById;
+    stay.cancelReason = prismaStay.cancelReason;
     stay.createdAt = prismaStay.createdAt;
     stay.updatedAt = prismaStay.updatedAt;
     stay.guest = prismaStay.guest ?? null;

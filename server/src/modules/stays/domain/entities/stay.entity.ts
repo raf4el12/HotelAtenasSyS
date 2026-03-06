@@ -9,6 +9,9 @@ export class StayEntity {
   rateRuleId: string | null;
   packageId: string | null;
   stayPrice: number;
+  guestCount: number;
+  vehiclePlate: string | null;
+  notes: string | null;
   checkIn: Date;
   checkOut: Date;
   actualCheckOut: Date | null;
@@ -16,6 +19,9 @@ export class StayEntity {
   reservationId: string | null;
   createdById: string;
   checkedOutById: string | null;
+  cancelledAt: Date | null;
+  cancelledById: string | null;
+  cancelReason: string | null;
   createdAt: Date;
   updatedAt: Date;
   guest?: { id: string; dni: string; firstName: string; lastName: string } | null;

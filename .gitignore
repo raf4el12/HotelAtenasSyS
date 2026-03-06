@@ -29,3 +29,6 @@ package.json
 pnpm-lock.yaml
 pnpm-workspace.yaml
 CLAUDE.md
+
+.agent
+.agents

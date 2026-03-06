@@ -20,6 +20,8 @@ function mapToRateRuleEntity(prismaRule: any): RateRuleEntity {
     rule.category = prismaRule.category;
     rule.price = Number(prismaRule.price);
     rule.durationMin = prismaRule.durationMin;
+    rule.durationHours = prismaRule.durationHours;
+    rule.extraHourPrice = prismaRule.extraHourPrice !== null ? Number(prismaRule.extraHourPrice) : null;
     rule.validFrom = prismaRule.validFrom;
     rule.validTo = prismaRule.validTo;
     rule.priority = prismaRule.priority;

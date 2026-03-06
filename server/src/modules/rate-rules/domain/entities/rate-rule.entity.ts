@@ -9,6 +9,8 @@ export class RateRuleEntity {
     category: RoomCategory;
     price: number;
     durationMin: number | null;
+    durationHours: number | null;
+    extraHourPrice: number | null;
     validFrom: Date | null;
     validTo: Date | null;
     priority: number;

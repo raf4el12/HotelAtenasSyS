@@ -61,6 +61,9 @@ enum ReservationStatus {
 enum PaymentMethod {
   CASH
   YAPE
+  PLIN
+  TRANSFER
+  CARD
 }
 
 enum PaymentType {
@@ -84,6 +87,39 @@ enum ProductStatus {
   DISCONTINUED
 }
 
+enum DocumentType {
+  DNI
+  PASSPORT
+  CE
+  OTHER
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum ReservationSource {
+  WALK_IN
+  PHONE
+  WHATSAPP
+  BOOKING
+  REFERRAL
+}
+
+enum BedType {
+  SINGLE
+  DOUBLE
+  QUEEN
+  KING
+}
+
+enum SaleStatus {
+  COMPLETED
+  VOIDED
+}
+
 // ========================== USUARIOS Y AUTENTICACIÓN =======================
 
 model User {
@@ -98,12 +134,15 @@ model User {
 
   profile Profile?
 
-  staysCreated        Stay[]        @relation("StayCreatedBy")
-  staysCheckedOut     Stay[]        @relation("StayCheckedOutBy")
-  reservationsCreated Reservation[] @relation("ReservationCreatedBy")
-  paymentsRegistered  Payment[]     @relation("PaymentRegisteredBy")
-  salesCreated        Sale[]        @relation("SaleCreatedBy")
-  roomStatusChanges   RoomStatusLog[]
+  staysCreated          Stay[]        @relation("StayCreatedBy")
+  staysCheckedOut       Stay[]        @relation("StayCheckedOutBy")
+  staysCancelled        Stay[]        @relation("StayCancelledBy")
+  reservationsCreated   Reservation[] @relation("ReservationCreatedBy")
+  reservationsCancelled Reservation[] @relation("ReservationCancelledBy")
+  paymentsRegistered    Payment[]     @relation("PaymentRegisteredBy")
+  paymentsVoided        Payment[]     @relation("PaymentVoidedBy")
+  salesCreated          Sale[]        @relation("SaleCreatedBy")
+  roomStatusChanges     RoomStatusLog[]
 
   @@map("users")
 }
@@ -161,6 +200,11 @@ model Room {
   category RoomCategory @default(NORMAL)
   status   RoomStatus   @default(AVAILABLE)
 
+  maxGuests Int     @default(2)
+  bedType   BedType @default(DOUBLE)
+  hasWindow Boolean @default(false)
+  notes     String?
+
   floorId String
   floor   Floor  @relation(fields: [floorId], references: [id], onDelete: Restrict)
 
@@ -200,6 +244,16 @@ model Guest {
   lastName  String
   phone     String?
 
+  documentType DocumentType @default(DNI)
+  nationality  String?
+  email        String?
+  dateOfBirth  DateTime?
+  gender       Gender?
+  address      String?
+  city         String?
+  country      String?      @default("PE")
+  notes        String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -219,8 +273,10 @@ model RateRule {
   stayMode    StayMode
   category    RoomCategory
 
-  price       Decimal      @db.Decimal(10, 2)
-  durationMin Int?
+  price          Decimal   @db.Decimal(10, 2)
+  durationMin    Int?
+  durationHours  Int?
+  extraHourPrice Decimal?  @db.Decimal(10, 2)
 
   validFrom DateTime?
   validTo   DateTime?
@@ -311,6 +367,9 @@ model Sale {
 
   subtotal Decimal @db.Decimal(10, 2)
 
+  status SaleStatus @default(COMPLETED)
+  notes  String?
+
   createdById String
   createdBy   User   @relation("SaleCreatedBy", fields: [createdById], references: [id])
 
@@ -355,6 +414,10 @@ model Stay {
 
   stayPrice Decimal @db.Decimal(10, 2)
 
+  guestCount   Int     @default(1)
+  vehiclePlate String?
+  notes        String?
+
   checkIn  DateTime @default(now())
   checkOut DateTime
 
@@ -369,6 +432,11 @@ model Stay {
   createdBy      User    @relation("StayCreatedBy", fields: [createdById], references: [id])
   checkedOutById String?
   checkedOutBy   User?   @relation("StayCheckedOutBy", fields: [checkedOutById], references: [id])
+
+  cancelledAt   DateTime?
+  cancelledById String?
+  cancelledBy   User?     @relation("StayCancelledBy", fields: [cancelledById], references: [id])
+  cancelReason  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -404,6 +472,16 @@ model Reservation {
   status ReservationStatus @default(PENDING)
   notes  String?
 
+  source       ReservationSource @default(WALK_IN)
+  contactPhone String?
+  contactEmail String?
+  guestCount   Int               @default(1)
+
+  cancelledAt   DateTime?
+  cancelledById String?
+  cancelledBy   User?     @relation("ReservationCancelledBy", fields: [cancelledById], references: [id])
+  cancelReason  String?
+
   createdById String
   createdBy   User   @relation("ReservationCreatedBy", fields: [createdById], references: [id])
 
@@ -434,6 +512,12 @@ model Payment {
   sale          Sale?        @relation(fields: [saleId], references: [id])
 
   notes String?
+
+  referenceCode String?
+  voidedAt      DateTime?
+  voidedById    String?
+  voidedBy      User?     @relation("PaymentVoidedBy", fields: [voidedById], references: [id])
+  voidReason    String?
 
   registeredById String
   registeredBy   User   @relation("PaymentRegisteredBy", fields: [registeredById], references: [id])

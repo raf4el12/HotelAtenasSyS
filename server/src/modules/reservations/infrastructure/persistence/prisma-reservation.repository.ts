@@ -24,6 +24,13 @@ function mapToReservationEntity(prismaRes: any): ReservationEntity {
     res.estimatedPrice = Number(prismaRes.estimatedPrice);
     res.status = prismaRes.status;
     res.notes = prismaRes.notes;
+    res.source = prismaRes.source;
+    res.contactPhone = prismaRes.contactPhone;
+    res.contactEmail = prismaRes.contactEmail;
+    res.guestCount = prismaRes.guestCount;
+    res.cancelledAt = prismaRes.cancelledAt;
+    res.cancelledById = prismaRes.cancelledById;
+    res.cancelReason = prismaRes.cancelReason;
     res.createdById = prismaRes.createdById;
     res.createdAt = prismaRes.createdAt;
     res.updatedAt = prismaRes.updatedAt;

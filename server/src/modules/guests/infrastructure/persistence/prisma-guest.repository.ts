@@ -12,6 +12,15 @@ function mapToGuestEntity(prismaGuest: any): GuestEntity {
     guest.firstName = prismaGuest.firstName;
     guest.lastName = prismaGuest.lastName;
     guest.phone = prismaGuest.phone;
+    guest.documentType = prismaGuest.documentType;
+    guest.nationality = prismaGuest.nationality;
+    guest.email = prismaGuest.email;
+    guest.dateOfBirth = prismaGuest.dateOfBirth;
+    guest.gender = prismaGuest.gender;
+    guest.address = prismaGuest.address;
+    guest.city = prismaGuest.city;
+    guest.country = prismaGuest.country;
+    guest.notes = prismaGuest.notes;
     guest.createdAt = prismaGuest.createdAt;
     guest.updatedAt = prismaGuest.updatedAt;
     return guest;
