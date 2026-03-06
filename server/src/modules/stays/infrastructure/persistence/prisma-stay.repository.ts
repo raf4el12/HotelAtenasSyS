@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../../prisma/prisma.service.js';
-import type { IStayRepository, CreateStayData } from '../../domain/repositories/stay.repository.js';
+import type { IStayRepository, CreateStayData, UpdateStayData } from '../../domain/repositories/stay.repository.js';
 import { StayEntity } from '../../domain/entities/stay.entity.js';
+import { RoomStatus } from '../../../../shared/domain/enums/room-status.enum.js';
 import type { StayMode } from '../../../../shared/domain/enums/stay-mode.enum.js';
-import { StayStatus } from '../../../../shared/domain/enums/stay-status.enum.js';
+import type { StayStatus } from '../../../../shared/domain/enums/stay-status.enum.js';
 import type { PaginatedResult } from '../../../../shared/domain/interfaces/paginated-result.interface.js';
 import type { PaginationParams } from '../../../../shared/domain/interfaces/pagination-params.interface.js';
 
@@ -53,6 +54,15 @@ export class PrismaStayRepository implements IStayRepository {
         return mapToStayEntity(stay);
     }
 
+    async update(id: string, data: UpdateStayData): Promise<StayEntity> {
+        const stay = await this.prisma.stay.update({
+            where: { id },
+            data,
+            include: stayInclude,
+        });
+        return mapToStayEntity(stay);
+    }
+
     async findAllPaginated(
         params: PaginationParams,
         filters?: { status?: StayStatus; stayMode?: StayMode; roomId?: string; guestId?: string },
@@ -94,33 +104,27 @@ export class PrismaStayRepository implements IStayRepository {
         };
     }
 
-    async checkOut(id: string, userId: string): Promise<StayEntity> {
-        const stay = await this.prisma.stay.update({
-            where: { id },
-            data: {
-                status: StayStatus.COMPLETED,
-                actualCheckOut: new Date(),
-                checkedOutById: userId,
-            },
-            include: stayInclude,
-        });
-        return mapToStayEntity(stay);
-    }
-
-    async cancel(id: string): Promise<StayEntity> {
-        const stay = await this.prisma.stay.update({
-            where: { id },
-            data: { status: StayStatus.CANCELLED },
-            include: stayInclude,
-        });
-        return mapToStayEntity(stay);
-    }
-
     async findActiveByRoom(roomId: string): Promise<StayEntity | null> {
         const stay = await this.prisma.stay.findFirst({
-            where: { roomId, status: StayStatus.ACTIVE },
+            where: { roomId, status: 'ACTIVE' },
             include: stayInclude,
         });
         return stay ? mapToStayEntity(stay) : null;
+    }
+
+    async createAndOccupyRoom(data: CreateStayData, roomId: string): Promise<StayEntity> {
+        const [stay] = await this.prisma.$transaction([
+            this.prisma.stay.create({ data, include: stayInclude }),
+            this.prisma.room.update({ where: { id: roomId }, data: { status: RoomStatus.OCCUPIED } }),
+        ]);
+        return mapToStayEntity(stay);
+    }
+
+    async updateAndChangeRoomStatus(id: string, stayData: UpdateStayData, roomId: string, roomStatus: RoomStatus): Promise<StayEntity> {
+        const [stay] = await this.prisma.$transaction([
+            this.prisma.stay.update({ where: { id }, data: stayData, include: stayInclude }),
+            this.prisma.room.update({ where: { id: roomId }, data: { status: roomStatus } }),
+        ]);
+        return mapToStayEntity(stay);
     }
 }

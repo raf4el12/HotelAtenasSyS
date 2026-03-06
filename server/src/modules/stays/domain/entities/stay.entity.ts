@@ -34,4 +34,14 @@ export class StayEntity {
   isOverdue(now: Date = new Date()): boolean {
     return this.status === StayStatus.ACTIVE && now > this.checkOut;
   }
+
+  markAsCheckedOut(userId: string): void {
+    this.status = StayStatus.COMPLETED;
+    this.actualCheckOut = new Date();
+    this.checkedOutById = userId;
+  }
+
+  markAsCancelled(): void {
+    this.status = StayStatus.CANCELLED;
+  }
 }

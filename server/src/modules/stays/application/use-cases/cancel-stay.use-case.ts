@@ -1,6 +1,5 @@
 import { Inject, Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import type { IStayRepository } from '../../domain/repositories/stay.repository.js';
-import type { IRoomRepository } from '../../../rooms/domain/repositories/room.repository.js';
 import { StayResponseDto } from '../dto/stay-response.dto.js';
 import { RoomStatus } from '../../../../shared/domain/enums/room-status.enum.js';
 import { mapToStayResponse } from './helpers/map-stay-response.js';
@@ -9,7 +8,6 @@ import { mapToStayResponse } from './helpers/map-stay-response.js';
 export class CancelStayUseCase {
     constructor(
         @Inject('IStayRepository') private readonly stayRepository: IStayRepository,
-        @Inject('IRoomRepository') private readonly roomRepository: IRoomRepository,
     ) { }
 
     async execute(id: string): Promise<StayResponseDto> {
@@ -20,10 +18,14 @@ export class CancelStayUseCase {
             throw new BadRequestException('Solo se puede cancelar estadías activas');
         }
 
-        const cancelled = await this.stayRepository.cancel(id);
+        stay.markAsCancelled();
 
-        // Free the room
-        await this.roomRepository.updateStatus(stay.roomId, RoomStatus.AVAILABLE);
+        const cancelled = await this.stayRepository.updateAndChangeRoomStatus(
+            id,
+            { status: stay.status },
+            stay.roomId,
+            RoomStatus.AVAILABLE,
+        );
 
         return mapToStayResponse(cancelled);
     }

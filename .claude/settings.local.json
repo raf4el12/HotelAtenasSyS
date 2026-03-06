@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(pnpm add:*)",
-      "Bash(npx nest:*)"
+      "Bash(npx nest:*)",
+      "Bash(pnpm:*)"
     ]
   }
 }

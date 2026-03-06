@@ -1,6 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsDateString, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsDateString, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { StayMode } from '../../../../shared/domain/enums/stay-mode.enum.js';
 
 export class CreateStayDto {
@@ -27,12 +26,6 @@ export class CreateStayDto {
     @IsOptional()
     @IsString()
     packageId?: string;
-
-    @ApiProperty({ example: 50.00, description: 'Precio de la estadía' })
-    @Type(() => Number)
-    @IsNumber({ maxDecimalPlaces: 2 })
-    @Min(0)
-    stayPrice: number;
 
     @ApiProperty({ description: 'Fecha/hora de check-in' })
     @IsDateString()
