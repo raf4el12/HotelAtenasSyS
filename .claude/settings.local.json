@@ -4,7 +4,10 @@
       "Bash(pnpm add:*)",
       "Bash(npx nest:*)",
       "Bash(pnpm:*)",
-      "Bash(npx skills:*)"
+      "Bash(npx skills:*)",
+      "Bash(rm:*)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npx next:*)"
     ]
   }
 }

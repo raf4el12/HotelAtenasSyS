@@ -32,3 +32,5 @@ CLAUDE.md
 
 .agent
 .agents
+
+/server/src/generated
