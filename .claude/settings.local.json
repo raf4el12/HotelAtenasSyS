@@ -16,7 +16,9 @@
       "Bash(docker-compose up:*)",
       "Bash(node:*)",
       "Bash(npx prisma:*)",
-      "Bash(DATABASE_URL=\"postgresql://atenas_admin:atenas_secret_2025@localhost:5435/hotel_atenas\" npx prisma:*)"
+      "Bash(DATABASE_URL=\"postgresql://atenas_admin:atenas_secret_2025@localhost:5435/hotel_atenas\" npx prisma:*)",
+      "Bash(cmd:*)",
+      "Bash(taskkill:*)"
     ]
   }
 }

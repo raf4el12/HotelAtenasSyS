@@ -12,6 +12,7 @@ import { ProductsModule } from './modules/products/application/products.module.j
 import { PackagesModule } from './modules/packages/application/packages.module.js';
 import { StaysModule } from './modules/stays/application/stays.module.js';
 import { ReservationsModule } from './modules/reservations/application/reservations.module.js';
+import { PaymentsModule } from './modules/payments/application/payments.module.js';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ReservationsModule } from './modules/reservations/application/reservati
     PackagesModule,
     StaysModule,
     ReservationsModule,
+    PaymentsModule,
   ],
 })
 export class AppModule { }
