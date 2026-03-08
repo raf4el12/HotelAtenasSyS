@@ -9,7 +9,16 @@ export class RedisService implements OnModuleDestroy {
     this.client = new Redis({
       host: process.env.REDIS_HOST ?? 'localhost',
       port: Number(process.env.REDIS_PORT ?? 6379),
+      password: process.env.REDIS_PASSWORD,
+      retryStrategy: (times) => {
+        if (times > 20) return null;
+        return Math.min(times * 500, 3000);
+      },
+      maxRetriesPerRequest: 3,
     });
+
+    this.client.on('connect', () => console.log('[Redis] Conectado'));
+    this.client.on('error', (err) => console.error('[Redis] Error:', err.message));
   }
 
   async get(key: string): Promise<string | null> {

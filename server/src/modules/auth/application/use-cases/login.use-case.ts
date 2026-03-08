@@ -16,23 +16,23 @@ function mapToAuthResponse(user: any): AuthResponseDto {
   response.role = user.role;
   response.profile = user.profile
     ? {
-        id: user.profile.id,
-        firstName: user.profile.firstName,
-        lastName: user.profile.lastName,
-        dni: user.profile.dni,
-        phone: user.profile.phone,
-        avatarUrl: user.profile.avatarUrl,
-        birthDate: user.profile.birthDate,
-        address: user.profile.address,
-        district: user.profile.district,
-        city: user.profile.city,
-        province: user.profile.province,
-        emergencyContactName: user.profile.emergencyContactName,
-        emergencyContactPhone: user.profile.emergencyContactPhone,
-        emergencyContactRelation: user.profile.emergencyContactRelation,
-        shift: user.profile.shift,
-        shiftNotes: user.profile.shiftNotes,
-      }
+      id: user.profile.id,
+      firstName: user.profile.firstName,
+      lastName: user.profile.lastName,
+      dni: user.profile.dni,
+      phone: user.profile.phone,
+      avatarUrl: user.profile.avatarUrl,
+      birthDate: user.profile.birthDate,
+      address: user.profile.address,
+      district: user.profile.district,
+      city: user.profile.city,
+      province: user.profile.province,
+      emergencyContactName: user.profile.emergencyContactName,
+      emergencyContactPhone: user.profile.emergencyContactPhone,
+      emergencyContactRelation: user.profile.emergencyContactRelation,
+      shift: user.profile.shift,
+      shiftNotes: user.profile.shiftNotes,
+    }
     : null;
   return response;
 }
@@ -44,7 +44,7 @@ export class LoginUseCase {
     @Inject('IPasswordService') private readonly passwordService: IPasswordService,
     @Inject('ITokenService') private readonly tokenService: ITokenService,
     @Inject('IRefreshTokenRepository') private readonly refreshTokenRepo: IRefreshTokenRepository,
-  ) {}
+  ) { }
 
   async execute(dto: LoginDto): Promise<{ user: AuthResponseDto; tokens: AuthTokens; deviceId: string }> {
     const user = await this.userRepository.findByEmail(dto.email);
@@ -64,7 +64,7 @@ export class LoginUseCase {
     const payload: JwtPayload = { id: user.id, email: user.email, role: user.role };
     const tokens = this.tokenService.generateTokens(payload);
 
-    const deviceId = randomUUID();
+    const deviceId = dto.deviceId || randomUUID();
     await this.refreshTokenRepo.save(
       { userId: user.id, deviceId, refreshToken: tokens.refreshToken },
       7 * 24 * 60 * 60,

@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class LoginDto {
   @ApiProperty({ example: 'admin@hotelatenas.com' })
@@ -11,4 +11,10 @@ export class LoginDto {
   @IsString({ message: 'La contraseña debe ser un texto' })
   @IsNotEmpty({ message: 'La contraseña es obligatoria' })
   password: string;
+
+  @ApiPropertyOptional({ example: 'device-abc-123' })
+  @IsOptional()
+  @IsString()
+  deviceId?: string;
 }
+
