@@ -7,7 +7,16 @@
       "Bash(npx skills:*)",
       "Bash(rm:*)",
       "Bash(npx create-next-app@latest:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(for f in modules/floors/interfaces/controllers/floors.controller.ts modules/floors/application/dto/create-floor.dto.ts modules/floors/application/dto/floor-response.dto.ts modules/rooms/application/dto/create-room.dto.ts modules/rooms/application/dto/room-response.dto.ts modules/rooms/application/dto/find-all-rooms.dto.ts modules/guests/application/dto/create-guest.dto.ts modules/guests/application/dto/guest-response.dto.ts modules/products/application/dto/create-product.dto.ts modules/products/application/dto/product-response.dto.ts modules/rate-rules/application/dto/create-rate-rule.dto.ts modules/rate-rules/application/dto/rate-rule-response.dto.ts modules/users/application/dto/user-response.dto.ts modules/users/application/dto/create-user.dto.ts modules/packages/application/dto/create-package.dto.ts)",
+      "Bash(do echo \"=== $f ===\")",
+      "Read(//c/Users/gomer/Desktop/HotelAtenasSyS/client/**)",
+      "Bash(done)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(node:*)",
+      "Bash(npx prisma:*)",
+      "Bash(DATABASE_URL=\"postgresql://atenas_admin:atenas_secret_2025@localhost:5435/hotel_atenas\" npx prisma:*)"
     ]
   }
 }

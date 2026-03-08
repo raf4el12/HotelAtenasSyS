@@ -20,8 +20,18 @@ export type RoomModel = runtime.Types.Result.DefaultSelection<Prisma.$RoomPayloa
 
 export type AggregateRoom = {
   _count: RoomCountAggregateOutputType | null
+  _avg: RoomAvgAggregateOutputType | null
+  _sum: RoomSumAggregateOutputType | null
   _min: RoomMinAggregateOutputType | null
   _max: RoomMaxAggregateOutputType | null
+}
+
+export type RoomAvgAggregateOutputType = {
+  maxGuests: number | null
+}
+
+export type RoomSumAggregateOutputType = {
+  maxGuests: number | null
 }
 
 export type RoomMinAggregateOutputType = {
@@ -29,6 +39,10 @@ export type RoomMinAggregateOutputType = {
   number: string | null
   category: $Enums.RoomCategory | null
   status: $Enums.RoomStatus | null
+  maxGuests: number | null
+  bedType: $Enums.BedType | null
+  hasWindow: boolean | null
+  notes: string | null
   floorId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -40,6 +54,10 @@ export type RoomMaxAggregateOutputType = {
   number: string | null
   category: $Enums.RoomCategory | null
   status: $Enums.RoomStatus | null
+  maxGuests: number | null
+  bedType: $Enums.BedType | null
+  hasWindow: boolean | null
+  notes: string | null
   floorId: string | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -51,6 +69,10 @@ export type RoomCountAggregateOutputType = {
   number: number
   category: number
   status: number
+  maxGuests: number
+  bedType: number
+  hasWindow: number
+  notes: number
   floorId: number
   createdAt: number
   updatedAt: number
@@ -59,11 +81,23 @@ export type RoomCountAggregateOutputType = {
 }
 
 
+export type RoomAvgAggregateInputType = {
+  maxGuests?: true
+}
+
+export type RoomSumAggregateInputType = {
+  maxGuests?: true
+}
+
 export type RoomMinAggregateInputType = {
   id?: true
   number?: true
   category?: true
   status?: true
+  maxGuests?: true
+  bedType?: true
+  hasWindow?: true
+  notes?: true
   floorId?: true
   createdAt?: true
   updatedAt?: true
@@ -75,6 +109,10 @@ export type RoomMaxAggregateInputType = {
   number?: true
   category?: true
   status?: true
+  maxGuests?: true
+  bedType?: true
+  hasWindow?: true
+  notes?: true
   floorId?: true
   createdAt?: true
   updatedAt?: true
@@ -86,6 +124,10 @@ export type RoomCountAggregateInputType = {
   number?: true
   category?: true
   status?: true
+  maxGuests?: true
+  bedType?: true
+  hasWindow?: true
+  notes?: true
   floorId?: true
   createdAt?: true
   updatedAt?: true
@@ -131,6 +173,18 @@ export type RoomAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: RoomAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: RoomSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: RoomMinAggregateInputType
@@ -161,6 +215,8 @@ export type RoomGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: RoomCountAggregateInputType | true
+  _avg?: RoomAvgAggregateInputType
+  _sum?: RoomSumAggregateInputType
   _min?: RoomMinAggregateInputType
   _max?: RoomMaxAggregateInputType
 }
@@ -170,11 +226,17 @@ export type RoomGroupByOutputType = {
   number: string
   category: $Enums.RoomCategory
   status: $Enums.RoomStatus
+  maxGuests: number
+  bedType: $Enums.BedType
+  hasWindow: boolean
+  notes: string | null
   floorId: string
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   _count: RoomCountAggregateOutputType | null
+  _avg: RoomAvgAggregateOutputType | null
+  _sum: RoomSumAggregateOutputType | null
   _min: RoomMinAggregateOutputType | null
   _max: RoomMaxAggregateOutputType | null
 }
@@ -202,6 +264,10 @@ export type RoomWhereInput = {
   number?: Prisma.StringFilter<"Room"> | string
   category?: Prisma.EnumRoomCategoryFilter<"Room"> | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFilter<"Room"> | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFilter<"Room"> | number
+  bedType?: Prisma.EnumBedTypeFilter<"Room"> | $Enums.BedType
+  hasWindow?: Prisma.BoolFilter<"Room"> | boolean
+  notes?: Prisma.StringNullableFilter<"Room"> | string | null
   floorId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
@@ -217,6 +283,10 @@ export type RoomOrderByWithRelationInput = {
   number?: Prisma.SortOrder
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  maxGuests?: Prisma.SortOrder
+  bedType?: Prisma.SortOrder
+  hasWindow?: Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   floorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -235,6 +305,10 @@ export type RoomWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.RoomWhereInput | Prisma.RoomWhereInput[]
   category?: Prisma.EnumRoomCategoryFilter<"Room"> | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFilter<"Room"> | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFilter<"Room"> | number
+  bedType?: Prisma.EnumBedTypeFilter<"Room"> | $Enums.BedType
+  hasWindow?: Prisma.BoolFilter<"Room"> | boolean
+  notes?: Prisma.StringNullableFilter<"Room"> | string | null
   floorId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
@@ -250,13 +324,19 @@ export type RoomOrderByWithAggregationInput = {
   number?: Prisma.SortOrder
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  maxGuests?: Prisma.SortOrder
+  bedType?: Prisma.SortOrder
+  hasWindow?: Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   floorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RoomCountOrderByAggregateInput
+  _avg?: Prisma.RoomAvgOrderByAggregateInput
   _max?: Prisma.RoomMaxOrderByAggregateInput
   _min?: Prisma.RoomMinOrderByAggregateInput
+  _sum?: Prisma.RoomSumOrderByAggregateInput
 }
 
 export type RoomScalarWhereWithAggregatesInput = {
@@ -267,6 +347,10 @@ export type RoomScalarWhereWithAggregatesInput = {
   number?: Prisma.StringWithAggregatesFilter<"Room"> | string
   category?: Prisma.EnumRoomCategoryWithAggregatesFilter<"Room"> | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusWithAggregatesFilter<"Room"> | $Enums.RoomStatus
+  maxGuests?: Prisma.IntWithAggregatesFilter<"Room"> | number
+  bedType?: Prisma.EnumBedTypeWithAggregatesFilter<"Room"> | $Enums.BedType
+  hasWindow?: Prisma.BoolWithAggregatesFilter<"Room"> | boolean
+  notes?: Prisma.StringNullableWithAggregatesFilter<"Room"> | string | null
   floorId?: Prisma.StringWithAggregatesFilter<"Room"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Room"> | Date | string
@@ -278,6 +362,10 @@ export type RoomCreateInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -292,6 +380,10 @@ export type RoomUncheckedCreateInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   floorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -306,6 +398,10 @@ export type RoomUpdateInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -320,6 +416,10 @@ export type RoomUncheckedUpdateInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   floorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -334,6 +434,10 @@ export type RoomCreateManyInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   floorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -345,6 +449,10 @@ export type RoomUpdateManyMutationInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -355,6 +463,10 @@ export type RoomUncheckedUpdateManyInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   floorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -376,10 +488,18 @@ export type RoomCountOrderByAggregateInput = {
   number?: Prisma.SortOrder
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  maxGuests?: Prisma.SortOrder
+  bedType?: Prisma.SortOrder
+  hasWindow?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   floorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type RoomAvgOrderByAggregateInput = {
+  maxGuests?: Prisma.SortOrder
 }
 
 export type RoomMaxOrderByAggregateInput = {
@@ -387,6 +507,10 @@ export type RoomMaxOrderByAggregateInput = {
   number?: Prisma.SortOrder
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  maxGuests?: Prisma.SortOrder
+  bedType?: Prisma.SortOrder
+  hasWindow?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   floorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -398,10 +522,18 @@ export type RoomMinOrderByAggregateInput = {
   number?: Prisma.SortOrder
   category?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  maxGuests?: Prisma.SortOrder
+  bedType?: Prisma.SortOrder
+  hasWindow?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   floorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type RoomSumOrderByAggregateInput = {
+  maxGuests?: Prisma.SortOrder
 }
 
 export type RoomScalarRelationFilter = {
@@ -459,6 +591,10 @@ export type EnumRoomStatusFieldUpdateOperationsInput = {
   set?: $Enums.RoomStatus
 }
 
+export type EnumBedTypeFieldUpdateOperationsInput = {
+  set?: $Enums.BedType
+}
+
 export type RoomCreateNestedOneWithoutStatusLogsInput = {
   create?: Prisma.XOR<Prisma.RoomCreateWithoutStatusLogsInput, Prisma.RoomUncheckedCreateWithoutStatusLogsInput>
   connectOrCreate?: Prisma.RoomCreateOrConnectWithoutStatusLogsInput
@@ -506,6 +642,10 @@ export type RoomCreateWithoutFloorInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -519,6 +659,10 @@ export type RoomUncheckedCreateWithoutFloorInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -561,6 +705,10 @@ export type RoomScalarWhereInput = {
   number?: Prisma.StringFilter<"Room"> | string
   category?: Prisma.EnumRoomCategoryFilter<"Room"> | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFilter<"Room"> | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFilter<"Room"> | number
+  bedType?: Prisma.EnumBedTypeFilter<"Room"> | $Enums.BedType
+  hasWindow?: Prisma.BoolFilter<"Room"> | boolean
+  notes?: Prisma.StringNullableFilter<"Room"> | string | null
   floorId?: Prisma.StringFilter<"Room"> | string
   createdAt?: Prisma.DateTimeFilter<"Room"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Room"> | Date | string
@@ -572,6 +720,10 @@ export type RoomCreateWithoutStatusLogsInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -585,6 +737,10 @@ export type RoomUncheckedCreateWithoutStatusLogsInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   floorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -614,6 +770,10 @@ export type RoomUpdateWithoutStatusLogsInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -627,6 +787,10 @@ export type RoomUncheckedUpdateWithoutStatusLogsInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   floorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -640,6 +804,10 @@ export type RoomCreateWithoutStaysInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -653,6 +821,10 @@ export type RoomUncheckedCreateWithoutStaysInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   floorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -682,6 +854,10 @@ export type RoomUpdateWithoutStaysInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -695,6 +871,10 @@ export type RoomUncheckedUpdateWithoutStaysInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   floorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -708,6 +888,10 @@ export type RoomCreateWithoutReservationsInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -721,6 +905,10 @@ export type RoomUncheckedCreateWithoutReservationsInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   floorId: string
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -750,6 +938,10 @@ export type RoomUpdateWithoutReservationsInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -763,6 +955,10 @@ export type RoomUncheckedUpdateWithoutReservationsInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   floorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -776,6 +972,10 @@ export type RoomCreateManyFloorInput = {
   number: string
   category?: $Enums.RoomCategory
   status?: $Enums.RoomStatus
+  maxGuests?: number
+  bedType?: $Enums.BedType
+  hasWindow?: boolean
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -786,6 +986,10 @@ export type RoomUpdateWithoutFloorInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -799,6 +1003,10 @@ export type RoomUncheckedUpdateWithoutFloorInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -812,6 +1020,10 @@ export type RoomUncheckedUpdateManyWithoutFloorInput = {
   number?: Prisma.StringFieldUpdateOperationsInput | string
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   status?: Prisma.EnumRoomStatusFieldUpdateOperationsInput | $Enums.RoomStatus
+  maxGuests?: Prisma.IntFieldUpdateOperationsInput | number
+  bedType?: Prisma.EnumBedTypeFieldUpdateOperationsInput | $Enums.BedType
+  hasWindow?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -871,6 +1083,10 @@ export type RoomSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   number?: boolean
   category?: boolean
   status?: boolean
+  maxGuests?: boolean
+  bedType?: boolean
+  hasWindow?: boolean
+  notes?: boolean
   floorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -887,6 +1103,10 @@ export type RoomSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   number?: boolean
   category?: boolean
   status?: boolean
+  maxGuests?: boolean
+  bedType?: boolean
+  hasWindow?: boolean
+  notes?: boolean
   floorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -899,6 +1119,10 @@ export type RoomSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   number?: boolean
   category?: boolean
   status?: boolean
+  maxGuests?: boolean
+  bedType?: boolean
+  hasWindow?: boolean
+  notes?: boolean
   floorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -911,13 +1135,17 @@ export type RoomSelectScalar = {
   number?: boolean
   category?: boolean
   status?: boolean
+  maxGuests?: boolean
+  bedType?: boolean
+  hasWindow?: boolean
+  notes?: boolean
   floorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "category" | "status" | "floorId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["room"]>
+export type RoomOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "number" | "category" | "status" | "maxGuests" | "bedType" | "hasWindow" | "notes" | "floorId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["room"]>
 export type RoomInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   floor?: boolean | Prisma.FloorDefaultArgs<ExtArgs>
   stays?: boolean | Prisma.Room$staysArgs<ExtArgs>
@@ -945,6 +1173,10 @@ export type $RoomPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     number: string
     category: $Enums.RoomCategory
     status: $Enums.RoomStatus
+    maxGuests: number
+    bedType: $Enums.BedType
+    hasWindow: boolean
+    notes: string | null
     floorId: string
     createdAt: Date
     updatedAt: Date
@@ -1380,6 +1612,10 @@ export interface RoomFieldRefs {
   readonly number: Prisma.FieldRef<"Room", 'String'>
   readonly category: Prisma.FieldRef<"Room", 'RoomCategory'>
   readonly status: Prisma.FieldRef<"Room", 'RoomStatus'>
+  readonly maxGuests: Prisma.FieldRef<"Room", 'Int'>
+  readonly bedType: Prisma.FieldRef<"Room", 'BedType'>
+  readonly hasWindow: Prisma.FieldRef<"Room", 'Boolean'>
+  readonly notes: Prisma.FieldRef<"Room", 'String'>
   readonly floorId: Prisma.FieldRef<"Room", 'String'>
   readonly createdAt: Prisma.FieldRef<"Room", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Room", 'DateTime'>

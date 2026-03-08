@@ -201,8 +201,11 @@ export type UserWhereInput = {
   profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   staysCreated?: Prisma.StayListRelationFilter
   staysCheckedOut?: Prisma.StayListRelationFilter
+  staysCancelled?: Prisma.StayListRelationFilter
   reservationsCreated?: Prisma.ReservationListRelationFilter
+  reservationsCancelled?: Prisma.ReservationListRelationFilter
   paymentsRegistered?: Prisma.PaymentListRelationFilter
+  paymentsVoided?: Prisma.PaymentListRelationFilter
   salesCreated?: Prisma.SaleListRelationFilter
   roomStatusChanges?: Prisma.RoomStatusLogListRelationFilter
 }
@@ -218,8 +221,11 @@ export type UserOrderByWithRelationInput = {
   profile?: Prisma.ProfileOrderByWithRelationInput
   staysCreated?: Prisma.StayOrderByRelationAggregateInput
   staysCheckedOut?: Prisma.StayOrderByRelationAggregateInput
+  staysCancelled?: Prisma.StayOrderByRelationAggregateInput
   reservationsCreated?: Prisma.ReservationOrderByRelationAggregateInput
+  reservationsCancelled?: Prisma.ReservationOrderByRelationAggregateInput
   paymentsRegistered?: Prisma.PaymentOrderByRelationAggregateInput
+  paymentsVoided?: Prisma.PaymentOrderByRelationAggregateInput
   salesCreated?: Prisma.SaleOrderByRelationAggregateInput
   roomStatusChanges?: Prisma.RoomStatusLogOrderByRelationAggregateInput
 }
@@ -238,8 +244,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   staysCreated?: Prisma.StayListRelationFilter
   staysCheckedOut?: Prisma.StayListRelationFilter
+  staysCancelled?: Prisma.StayListRelationFilter
   reservationsCreated?: Prisma.ReservationListRelationFilter
+  reservationsCancelled?: Prisma.ReservationListRelationFilter
   paymentsRegistered?: Prisma.PaymentListRelationFilter
+  paymentsVoided?: Prisma.PaymentListRelationFilter
   salesCreated?: Prisma.SaleListRelationFilter
   roomStatusChanges?: Prisma.RoomStatusLogListRelationFilter
 }, "id" | "email">
@@ -281,8 +290,11 @@ export type UserCreateInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
@@ -298,8 +310,11 @@ export type UserUncheckedCreateInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
@@ -315,8 +330,11 @@ export type UserUpdateInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
@@ -332,8 +350,11 @@ export type UserUncheckedUpdateInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
@@ -478,6 +499,12 @@ export type UserCreateNestedOneWithoutStaysCheckedOutInput = {
   connect?: Prisma.UserWhereUniqueInput
 }
 
+export type UserCreateNestedOneWithoutStaysCancelledInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStaysCancelledInput, Prisma.UserUncheckedCreateWithoutStaysCancelledInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStaysCancelledInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserUpdateOneRequiredWithoutStaysCreatedNestedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutStaysCreatedInput, Prisma.UserUncheckedCreateWithoutStaysCreatedInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutStaysCreatedInput
@@ -496,10 +523,36 @@ export type UserUpdateOneWithoutStaysCheckedOutNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStaysCheckedOutInput, Prisma.UserUpdateWithoutStaysCheckedOutInput>, Prisma.UserUncheckedUpdateWithoutStaysCheckedOutInput>
 }
 
+export type UserUpdateOneWithoutStaysCancelledNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStaysCancelledInput, Prisma.UserUncheckedCreateWithoutStaysCancelledInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStaysCancelledInput
+  upsert?: Prisma.UserUpsertWithoutStaysCancelledInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStaysCancelledInput, Prisma.UserUpdateWithoutStaysCancelledInput>, Prisma.UserUncheckedUpdateWithoutStaysCancelledInput>
+}
+
+export type UserCreateNestedOneWithoutReservationsCancelledInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReservationsCancelledInput, Prisma.UserUncheckedCreateWithoutReservationsCancelledInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReservationsCancelledInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserCreateNestedOneWithoutReservationsCreatedInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutReservationsCreatedInput, Prisma.UserUncheckedCreateWithoutReservationsCreatedInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutReservationsCreatedInput
   connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutReservationsCancelledNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReservationsCancelledInput, Prisma.UserUncheckedCreateWithoutReservationsCancelledInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReservationsCancelledInput
+  upsert?: Prisma.UserUpsertWithoutReservationsCancelledInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReservationsCancelledInput, Prisma.UserUpdateWithoutReservationsCancelledInput>, Prisma.UserUncheckedUpdateWithoutReservationsCancelledInput>
 }
 
 export type UserUpdateOneRequiredWithoutReservationsCreatedNestedInput = {
@@ -510,10 +563,26 @@ export type UserUpdateOneRequiredWithoutReservationsCreatedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReservationsCreatedInput, Prisma.UserUpdateWithoutReservationsCreatedInput>, Prisma.UserUncheckedUpdateWithoutReservationsCreatedInput>
 }
 
+export type UserCreateNestedOneWithoutPaymentsVoidedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsVoidedInput, Prisma.UserUncheckedCreateWithoutPaymentsVoidedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsVoidedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
 export type UserCreateNestedOneWithoutPaymentsRegisteredInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsRegisteredInput, Prisma.UserUncheckedCreateWithoutPaymentsRegisteredInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsRegisteredInput
   connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPaymentsVoidedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentsVoidedInput, Prisma.UserUncheckedCreateWithoutPaymentsVoidedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentsVoidedInput
+  upsert?: Prisma.UserUpsertWithoutPaymentsVoidedInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentsVoidedInput, Prisma.UserUpdateWithoutPaymentsVoidedInput>, Prisma.UserUncheckedUpdateWithoutPaymentsVoidedInput>
 }
 
 export type UserUpdateOneRequiredWithoutPaymentsRegisteredNestedInput = {
@@ -534,8 +603,11 @@ export type UserCreateWithoutProfileInput = {
   updatedAt?: Date | string
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
@@ -550,8 +622,11 @@ export type UserUncheckedCreateWithoutProfileInput = {
   updatedAt?: Date | string
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
@@ -582,8 +657,11 @@ export type UserUpdateWithoutProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
@@ -598,8 +676,11 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
@@ -615,8 +696,11 @@ export type UserCreateWithoutRoomStatusChangesInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
 }
 
@@ -631,8 +715,11 @@ export type UserUncheckedCreateWithoutRoomStatusChangesInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
 }
 
@@ -663,8 +750,11 @@ export type UserUpdateWithoutRoomStatusChangesInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -679,8 +769,11 @@ export type UserUncheckedUpdateWithoutRoomStatusChangesInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
 }
 
@@ -695,8 +788,11 @@ export type UserCreateWithoutSalesCreatedInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
 
@@ -711,8 +807,11 @@ export type UserUncheckedCreateWithoutSalesCreatedInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
 
@@ -743,8 +842,11 @@ export type UserUpdateWithoutSalesCreatedInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
 
@@ -759,8 +861,11 @@ export type UserUncheckedUpdateWithoutSalesCreatedInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
@@ -774,8 +879,11 @@ export type UserCreateWithoutStaysCreatedInput = {
   updatedAt?: Date | string
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
@@ -790,8 +898,11 @@ export type UserUncheckedCreateWithoutStaysCreatedInput = {
   updatedAt?: Date | string
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
@@ -811,8 +922,11 @@ export type UserCreateWithoutStaysCheckedOutInput = {
   updatedAt?: Date | string
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
@@ -827,8 +941,11 @@ export type UserUncheckedCreateWithoutStaysCheckedOutInput = {
   updatedAt?: Date | string
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
@@ -836,6 +953,49 @@ export type UserUncheckedCreateWithoutStaysCheckedOutInput = {
 export type UserCreateOrConnectWithoutStaysCheckedOutInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutStaysCheckedOutInput, Prisma.UserUncheckedCreateWithoutStaysCheckedOutInput>
+}
+
+export type UserCreateWithoutStaysCancelledInput = {
+  id?: string
+  email: string
+  password: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
+  staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
+  paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
+  salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
+  roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutStaysCancelledInput = {
+  id?: string
+  email: string
+  password: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
+  staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
+  paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
+  salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
+  roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutStaysCancelledInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutStaysCancelledInput, Prisma.UserUncheckedCreateWithoutStaysCancelledInput>
 }
 
 export type UserUpsertWithoutStaysCreatedInput = {
@@ -859,8 +1019,11 @@ export type UserUpdateWithoutStaysCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
@@ -875,8 +1038,11 @@ export type UserUncheckedUpdateWithoutStaysCreatedInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
@@ -902,8 +1068,11 @@ export type UserUpdateWithoutStaysCheckedOutInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
@@ -918,10 +1087,105 @@ export type UserUncheckedUpdateWithoutStaysCheckedOutInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUpsertWithoutStaysCancelledInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutStaysCancelledInput, Prisma.UserUncheckedUpdateWithoutStaysCancelledInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutStaysCancelledInput, Prisma.UserUncheckedCreateWithoutStaysCancelledInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutStaysCancelledInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutStaysCancelledInput, Prisma.UserUncheckedUpdateWithoutStaysCancelledInput>
+}
+
+export type UserUpdateWithoutStaysCancelledInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
+  staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
+  paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
+  salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
+  roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutStaysCancelledInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
+  staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
+  paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
+  salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserCreateWithoutReservationsCancelledInput = {
+  id?: string
+  email: string
+  password: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
+  staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
+  reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
+  salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
+  roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutReservationsCancelledInput = {
+  id?: string
+  email: string
+  password: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
+  staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
+  reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
+  salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
+  roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutReservationsCancelledInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReservationsCancelledInput, Prisma.UserUncheckedCreateWithoutReservationsCancelledInput>
 }
 
 export type UserCreateWithoutReservationsCreatedInput = {
@@ -935,7 +1199,10 @@ export type UserCreateWithoutReservationsCreatedInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
@@ -951,7 +1218,10 @@ export type UserUncheckedCreateWithoutReservationsCreatedInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
   paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
@@ -959,6 +1229,55 @@ export type UserUncheckedCreateWithoutReservationsCreatedInput = {
 export type UserCreateOrConnectWithoutReservationsCreatedInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutReservationsCreatedInput, Prisma.UserUncheckedCreateWithoutReservationsCreatedInput>
+}
+
+export type UserUpsertWithoutReservationsCancelledInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReservationsCancelledInput, Prisma.UserUncheckedUpdateWithoutReservationsCancelledInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReservationsCancelledInput, Prisma.UserUncheckedCreateWithoutReservationsCancelledInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReservationsCancelledInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReservationsCancelledInput, Prisma.UserUncheckedUpdateWithoutReservationsCancelledInput>
+}
+
+export type UserUpdateWithoutReservationsCancelledInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
+  staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
+  reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
+  salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
+  roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReservationsCancelledInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
+  staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
+  reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
+  salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutReservationsCreatedInput = {
@@ -983,7 +1302,10 @@ export type UserUpdateWithoutReservationsCreatedInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
@@ -999,9 +1321,55 @@ export type UserUncheckedUpdateWithoutReservationsCreatedInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
   paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserCreateWithoutPaymentsVoidedInput = {
+  id?: string
+  email: string
+  password: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
+  staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
+  reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
+  paymentsRegistered?: Prisma.PaymentCreateNestedManyWithoutRegisteredByInput
+  salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
+  roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
+}
+
+export type UserUncheckedCreateWithoutPaymentsVoidedInput = {
+  id?: string
+  email: string
+  password: string
+  role: $Enums.Role
+  isActive?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
+  staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
+  reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
+  paymentsRegistered?: Prisma.PaymentUncheckedCreateNestedManyWithoutRegisteredByInput
+  salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
+  roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
+}
+
+export type UserCreateOrConnectWithoutPaymentsVoidedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsVoidedInput, Prisma.UserUncheckedCreateWithoutPaymentsVoidedInput>
 }
 
 export type UserCreateWithoutPaymentsRegisteredInput = {
@@ -1015,7 +1383,10 @@ export type UserCreateWithoutPaymentsRegisteredInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationCreateNestedManyWithoutCancelledByInput
+  paymentsVoided?: Prisma.PaymentCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogCreateNestedManyWithoutChangedByInput
 }
@@ -1031,7 +1402,10 @@ export type UserUncheckedCreateWithoutPaymentsRegisteredInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   staysCreated?: Prisma.StayUncheckedCreateNestedManyWithoutCreatedByInput
   staysCheckedOut?: Prisma.StayUncheckedCreateNestedManyWithoutCheckedOutByInput
+  staysCancelled?: Prisma.StayUncheckedCreateNestedManyWithoutCancelledByInput
   reservationsCreated?: Prisma.ReservationUncheckedCreateNestedManyWithoutCreatedByInput
+  reservationsCancelled?: Prisma.ReservationUncheckedCreateNestedManyWithoutCancelledByInput
+  paymentsVoided?: Prisma.PaymentUncheckedCreateNestedManyWithoutVoidedByInput
   salesCreated?: Prisma.SaleUncheckedCreateNestedManyWithoutCreatedByInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedCreateNestedManyWithoutChangedByInput
 }
@@ -1039,6 +1413,55 @@ export type UserUncheckedCreateWithoutPaymentsRegisteredInput = {
 export type UserCreateOrConnectWithoutPaymentsRegisteredInput = {
   where: Prisma.UserWhereUniqueInput
   create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsRegisteredInput, Prisma.UserUncheckedCreateWithoutPaymentsRegisteredInput>
+}
+
+export type UserUpsertWithoutPaymentsVoidedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsVoidedInput, Prisma.UserUncheckedUpdateWithoutPaymentsVoidedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentsVoidedInput, Prisma.UserUncheckedCreateWithoutPaymentsVoidedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPaymentsVoidedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentsVoidedInput, Prisma.UserUncheckedUpdateWithoutPaymentsVoidedInput>
+}
+
+export type UserUpdateWithoutPaymentsVoidedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
+  staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
+  reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
+  paymentsRegistered?: Prisma.PaymentUpdateManyWithoutRegisteredByNestedInput
+  salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
+  roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPaymentsVoidedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
+  staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
+  reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
+  paymentsRegistered?: Prisma.PaymentUncheckedUpdateManyWithoutRegisteredByNestedInput
+  salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
+  roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
 
 export type UserUpsertWithoutPaymentsRegisteredInput = {
@@ -1063,7 +1486,10 @@ export type UserUpdateWithoutPaymentsRegisteredInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUpdateManyWithoutCancelledByNestedInput
+  paymentsVoided?: Prisma.PaymentUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUpdateManyWithoutChangedByNestedInput
 }
@@ -1079,7 +1505,10 @@ export type UserUncheckedUpdateWithoutPaymentsRegisteredInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   staysCreated?: Prisma.StayUncheckedUpdateManyWithoutCreatedByNestedInput
   staysCheckedOut?: Prisma.StayUncheckedUpdateManyWithoutCheckedOutByNestedInput
+  staysCancelled?: Prisma.StayUncheckedUpdateManyWithoutCancelledByNestedInput
   reservationsCreated?: Prisma.ReservationUncheckedUpdateManyWithoutCreatedByNestedInput
+  reservationsCancelled?: Prisma.ReservationUncheckedUpdateManyWithoutCancelledByNestedInput
+  paymentsVoided?: Prisma.PaymentUncheckedUpdateManyWithoutVoidedByNestedInput
   salesCreated?: Prisma.SaleUncheckedUpdateManyWithoutCreatedByNestedInput
   roomStatusChanges?: Prisma.RoomStatusLogUncheckedUpdateManyWithoutChangedByNestedInput
 }
@@ -1092,8 +1521,11 @@ export type UserUncheckedUpdateWithoutPaymentsRegisteredInput = {
 export type UserCountOutputType = {
   staysCreated: number
   staysCheckedOut: number
+  staysCancelled: number
   reservationsCreated: number
+  reservationsCancelled: number
   paymentsRegistered: number
+  paymentsVoided: number
   salesCreated: number
   roomStatusChanges: number
 }
@@ -1101,8 +1533,11 @@ export type UserCountOutputType = {
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   staysCreated?: boolean | UserCountOutputTypeCountStaysCreatedArgs
   staysCheckedOut?: boolean | UserCountOutputTypeCountStaysCheckedOutArgs
+  staysCancelled?: boolean | UserCountOutputTypeCountStaysCancelledArgs
   reservationsCreated?: boolean | UserCountOutputTypeCountReservationsCreatedArgs
+  reservationsCancelled?: boolean | UserCountOutputTypeCountReservationsCancelledArgs
   paymentsRegistered?: boolean | UserCountOutputTypeCountPaymentsRegisteredArgs
+  paymentsVoided?: boolean | UserCountOutputTypeCountPaymentsVoidedArgs
   salesCreated?: boolean | UserCountOutputTypeCountSalesCreatedArgs
   roomStatusChanges?: boolean | UserCountOutputTypeCountRoomStatusChangesArgs
 }
@@ -1134,6 +1569,13 @@ export type UserCountOutputTypeCountStaysCheckedOutArgs<ExtArgs extends runtime.
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountStaysCancelledArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StayWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountReservationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ReservationWhereInput
 }
@@ -1141,7 +1583,21 @@ export type UserCountOutputTypeCountReservationsCreatedArgs<ExtArgs extends runt
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountReservationsCancelledArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReservationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountPaymentsRegisteredArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPaymentsVoidedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PaymentWhereInput
 }
 
@@ -1171,8 +1627,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   staysCreated?: boolean | Prisma.User$staysCreatedArgs<ExtArgs>
   staysCheckedOut?: boolean | Prisma.User$staysCheckedOutArgs<ExtArgs>
+  staysCancelled?: boolean | Prisma.User$staysCancelledArgs<ExtArgs>
   reservationsCreated?: boolean | Prisma.User$reservationsCreatedArgs<ExtArgs>
+  reservationsCancelled?: boolean | Prisma.User$reservationsCancelledArgs<ExtArgs>
   paymentsRegistered?: boolean | Prisma.User$paymentsRegisteredArgs<ExtArgs>
+  paymentsVoided?: boolean | Prisma.User$paymentsVoidedArgs<ExtArgs>
   salesCreated?: boolean | Prisma.User$salesCreatedArgs<ExtArgs>
   roomStatusChanges?: boolean | Prisma.User$roomStatusChangesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1213,8 +1672,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   staysCreated?: boolean | Prisma.User$staysCreatedArgs<ExtArgs>
   staysCheckedOut?: boolean | Prisma.User$staysCheckedOutArgs<ExtArgs>
+  staysCancelled?: boolean | Prisma.User$staysCancelledArgs<ExtArgs>
   reservationsCreated?: boolean | Prisma.User$reservationsCreatedArgs<ExtArgs>
+  reservationsCancelled?: boolean | Prisma.User$reservationsCancelledArgs<ExtArgs>
   paymentsRegistered?: boolean | Prisma.User$paymentsRegisteredArgs<ExtArgs>
+  paymentsVoided?: boolean | Prisma.User$paymentsVoidedArgs<ExtArgs>
   salesCreated?: boolean | Prisma.User$salesCreatedArgs<ExtArgs>
   roomStatusChanges?: boolean | Prisma.User$roomStatusChangesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1228,8 +1690,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     profile: Prisma.$ProfilePayload<ExtArgs> | null
     staysCreated: Prisma.$StayPayload<ExtArgs>[]
     staysCheckedOut: Prisma.$StayPayload<ExtArgs>[]
+    staysCancelled: Prisma.$StayPayload<ExtArgs>[]
     reservationsCreated: Prisma.$ReservationPayload<ExtArgs>[]
+    reservationsCancelled: Prisma.$ReservationPayload<ExtArgs>[]
     paymentsRegistered: Prisma.$PaymentPayload<ExtArgs>[]
+    paymentsVoided: Prisma.$PaymentPayload<ExtArgs>[]
     salesCreated: Prisma.$SalePayload<ExtArgs>[]
     roomStatusChanges: Prisma.$RoomStatusLogPayload<ExtArgs>[]
   }
@@ -1638,8 +2103,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   staysCreated<T extends Prisma.User$staysCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$staysCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   staysCheckedOut<T extends Prisma.User$staysCheckedOutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$staysCheckedOutArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  staysCancelled<T extends Prisma.User$staysCancelledArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$staysCancelledArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StayPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reservationsCreated<T extends Prisma.User$reservationsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reservationsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reservationsCancelled<T extends Prisma.User$reservationsCancelledArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reservationsCancelledArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   paymentsRegistered<T extends Prisma.User$paymentsRegisteredArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsRegisteredArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  paymentsVoided<T extends Prisma.User$paymentsVoidedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentsVoidedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   salesCreated<T extends Prisma.User$salesCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$salesCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   roomStatusChanges<T extends Prisma.User$roomStatusChangesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$roomStatusChangesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RoomStatusLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2133,6 +2601,30 @@ export type User$staysCheckedOutArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
+ * User.staysCancelled
+ */
+export type User$staysCancelledArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Stay
+   */
+  select?: Prisma.StaySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Stay
+   */
+  omit?: Prisma.StayOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StayInclude<ExtArgs> | null
+  where?: Prisma.StayWhereInput
+  orderBy?: Prisma.StayOrderByWithRelationInput | Prisma.StayOrderByWithRelationInput[]
+  cursor?: Prisma.StayWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StayScalarFieldEnum | Prisma.StayScalarFieldEnum[]
+}
+
+/**
  * User.reservationsCreated
  */
 export type User$reservationsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2157,9 +2649,57 @@ export type User$reservationsCreatedArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * User.reservationsCancelled
+ */
+export type User$reservationsCancelledArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Reservation
+   */
+  select?: Prisma.ReservationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Reservation
+   */
+  omit?: Prisma.ReservationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReservationInclude<ExtArgs> | null
+  where?: Prisma.ReservationWhereInput
+  orderBy?: Prisma.ReservationOrderByWithRelationInput | Prisma.ReservationOrderByWithRelationInput[]
+  cursor?: Prisma.ReservationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReservationScalarFieldEnum | Prisma.ReservationScalarFieldEnum[]
+}
+
+/**
  * User.paymentsRegistered
  */
 export type User$paymentsRegisteredArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * User.paymentsVoided
+ */
+export type User$paymentsVoidedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Payment
    */

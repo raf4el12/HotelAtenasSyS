@@ -29,12 +29,16 @@ export type AggregateRateRule = {
 export type RateRuleAvgAggregateOutputType = {
   price: runtime.Decimal | null
   durationMin: number | null
+  durationHours: number | null
+  extraHourPrice: runtime.Decimal | null
   priority: number | null
 }
 
 export type RateRuleSumAggregateOutputType = {
   price: runtime.Decimal | null
   durationMin: number | null
+  durationHours: number | null
+  extraHourPrice: runtime.Decimal | null
   priority: number | null
 }
 
@@ -46,6 +50,8 @@ export type RateRuleMinAggregateOutputType = {
   category: $Enums.RoomCategory | null
   price: runtime.Decimal | null
   durationMin: number | null
+  durationHours: number | null
+  extraHourPrice: runtime.Decimal | null
   validFrom: Date | null
   validTo: Date | null
   priority: number | null
@@ -62,6 +68,8 @@ export type RateRuleMaxAggregateOutputType = {
   category: $Enums.RoomCategory | null
   price: runtime.Decimal | null
   durationMin: number | null
+  durationHours: number | null
+  extraHourPrice: runtime.Decimal | null
   validFrom: Date | null
   validTo: Date | null
   priority: number | null
@@ -78,6 +86,8 @@ export type RateRuleCountAggregateOutputType = {
   category: number
   price: number
   durationMin: number
+  durationHours: number
+  extraHourPrice: number
   validFrom: number
   validTo: number
   priority: number
@@ -91,12 +101,16 @@ export type RateRuleCountAggregateOutputType = {
 export type RateRuleAvgAggregateInputType = {
   price?: true
   durationMin?: true
+  durationHours?: true
+  extraHourPrice?: true
   priority?: true
 }
 
 export type RateRuleSumAggregateInputType = {
   price?: true
   durationMin?: true
+  durationHours?: true
+  extraHourPrice?: true
   priority?: true
 }
 
@@ -108,6 +122,8 @@ export type RateRuleMinAggregateInputType = {
   category?: true
   price?: true
   durationMin?: true
+  durationHours?: true
+  extraHourPrice?: true
   validFrom?: true
   validTo?: true
   priority?: true
@@ -124,6 +140,8 @@ export type RateRuleMaxAggregateInputType = {
   category?: true
   price?: true
   durationMin?: true
+  durationHours?: true
+  extraHourPrice?: true
   validFrom?: true
   validTo?: true
   priority?: true
@@ -140,6 +158,8 @@ export type RateRuleCountAggregateInputType = {
   category?: true
   price?: true
   durationMin?: true
+  durationHours?: true
+  extraHourPrice?: true
   validFrom?: true
   validTo?: true
   priority?: true
@@ -243,6 +263,8 @@ export type RateRuleGroupByOutputType = {
   category: $Enums.RoomCategory
   price: runtime.Decimal
   durationMin: number | null
+  durationHours: number | null
+  extraHourPrice: runtime.Decimal | null
   validFrom: Date | null
   validTo: Date | null
   priority: number
@@ -282,6 +304,8 @@ export type RateRuleWhereInput = {
   category?: Prisma.EnumRoomCategoryFilter<"RateRule"> | $Enums.RoomCategory
   price?: Prisma.DecimalFilter<"RateRule"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.IntNullableFilter<"RateRule"> | number | null
+  durationHours?: Prisma.IntNullableFilter<"RateRule"> | number | null
+  extraHourPrice?: Prisma.DecimalNullableFilter<"RateRule"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.DateTimeNullableFilter<"RateRule"> | Date | string | null
   validTo?: Prisma.DateTimeNullableFilter<"RateRule"> | Date | string | null
   priority?: Prisma.IntFilter<"RateRule"> | number
@@ -299,6 +323,8 @@ export type RateRuleOrderByWithRelationInput = {
   category?: Prisma.SortOrder
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  durationHours?: Prisma.SortOrderInput | Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   validFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   validTo?: Prisma.SortOrderInput | Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -319,6 +345,8 @@ export type RateRuleWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.EnumRoomCategoryFilter<"RateRule"> | $Enums.RoomCategory
   price?: Prisma.DecimalFilter<"RateRule"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.IntNullableFilter<"RateRule"> | number | null
+  durationHours?: Prisma.IntNullableFilter<"RateRule"> | number | null
+  extraHourPrice?: Prisma.DecimalNullableFilter<"RateRule"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.DateTimeNullableFilter<"RateRule"> | Date | string | null
   validTo?: Prisma.DateTimeNullableFilter<"RateRule"> | Date | string | null
   priority?: Prisma.IntFilter<"RateRule"> | number
@@ -336,6 +364,8 @@ export type RateRuleOrderByWithAggregationInput = {
   category?: Prisma.SortOrder
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrderInput | Prisma.SortOrder
+  durationHours?: Prisma.SortOrderInput | Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrderInput | Prisma.SortOrder
   validFrom?: Prisma.SortOrderInput | Prisma.SortOrder
   validTo?: Prisma.SortOrderInput | Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -360,6 +390,8 @@ export type RateRuleScalarWhereWithAggregatesInput = {
   category?: Prisma.EnumRoomCategoryWithAggregatesFilter<"RateRule"> | $Enums.RoomCategory
   price?: Prisma.DecimalWithAggregatesFilter<"RateRule"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.IntNullableWithAggregatesFilter<"RateRule"> | number | null
+  durationHours?: Prisma.IntNullableWithAggregatesFilter<"RateRule"> | number | null
+  extraHourPrice?: Prisma.DecimalNullableWithAggregatesFilter<"RateRule"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.DateTimeNullableWithAggregatesFilter<"RateRule"> | Date | string | null
   validTo?: Prisma.DateTimeNullableWithAggregatesFilter<"RateRule"> | Date | string | null
   priority?: Prisma.IntWithAggregatesFilter<"RateRule"> | number
@@ -376,6 +408,8 @@ export type RateRuleCreateInput = {
   category: $Enums.RoomCategory
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: number | null
+  durationHours?: number | null
+  extraHourPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Date | string | null
   validTo?: Date | string | null
   priority?: number
@@ -393,6 +427,8 @@ export type RateRuleUncheckedCreateInput = {
   category: $Enums.RoomCategory
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: number | null
+  durationHours?: number | null
+  extraHourPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Date | string | null
   validTo?: Date | string | null
   priority?: number
@@ -410,6 +446,8 @@ export type RateRuleUpdateInput = {
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  durationHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  extraHourPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -427,6 +465,8 @@ export type RateRuleUncheckedUpdateInput = {
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  durationHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  extraHourPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -444,6 +484,8 @@ export type RateRuleCreateManyInput = {
   category: $Enums.RoomCategory
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: number | null
+  durationHours?: number | null
+  extraHourPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Date | string | null
   validTo?: Date | string | null
   priority?: number
@@ -460,6 +502,8 @@ export type RateRuleUpdateManyMutationInput = {
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  durationHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  extraHourPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -476,6 +520,8 @@ export type RateRuleUncheckedUpdateManyInput = {
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  durationHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  extraHourPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -492,6 +538,8 @@ export type RateRuleCountOrderByAggregateInput = {
   category?: Prisma.SortOrder
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
+  durationHours?: Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validTo?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -503,6 +551,8 @@ export type RateRuleCountOrderByAggregateInput = {
 export type RateRuleAvgOrderByAggregateInput = {
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
+  durationHours?: Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrder
   priority?: Prisma.SortOrder
 }
 
@@ -514,6 +564,8 @@ export type RateRuleMaxOrderByAggregateInput = {
   category?: Prisma.SortOrder
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
+  durationHours?: Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validTo?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -530,6 +582,8 @@ export type RateRuleMinOrderByAggregateInput = {
   category?: Prisma.SortOrder
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
+  durationHours?: Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrder
   validFrom?: Prisma.SortOrder
   validTo?: Prisma.SortOrder
   priority?: Prisma.SortOrder
@@ -541,6 +595,8 @@ export type RateRuleMinOrderByAggregateInput = {
 export type RateRuleSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
   durationMin?: Prisma.SortOrder
+  durationHours?: Prisma.SortOrder
+  extraHourPrice?: Prisma.SortOrder
   priority?: Prisma.SortOrder
 }
 
@@ -569,6 +625,14 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
 export type RateRuleCreateNestedOneWithoutStaysInput = {
   create?: Prisma.XOR<Prisma.RateRuleCreateWithoutStaysInput, Prisma.RateRuleUncheckedCreateWithoutStaysInput>
   connectOrCreate?: Prisma.RateRuleCreateOrConnectWithoutStaysInput
@@ -593,6 +657,8 @@ export type RateRuleCreateWithoutStaysInput = {
   category: $Enums.RoomCategory
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: number | null
+  durationHours?: number | null
+  extraHourPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Date | string | null
   validTo?: Date | string | null
   priority?: number
@@ -609,6 +675,8 @@ export type RateRuleUncheckedCreateWithoutStaysInput = {
   category: $Enums.RoomCategory
   price: runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: number | null
+  durationHours?: number | null
+  extraHourPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Date | string | null
   validTo?: Date | string | null
   priority?: number
@@ -641,6 +709,8 @@ export type RateRuleUpdateWithoutStaysInput = {
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  durationHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  extraHourPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -657,6 +727,8 @@ export type RateRuleUncheckedUpdateWithoutStaysInput = {
   category?: Prisma.EnumRoomCategoryFieldUpdateOperationsInput | $Enums.RoomCategory
   price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   durationMin?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  durationHours?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  extraHourPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   validFrom?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   validTo?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   priority?: Prisma.IntFieldUpdateOperationsInput | number
@@ -704,6 +776,8 @@ export type RateRuleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   category?: boolean
   price?: boolean
   durationMin?: boolean
+  durationHours?: boolean
+  extraHourPrice?: boolean
   validFrom?: boolean
   validTo?: boolean
   priority?: boolean
@@ -722,6 +796,8 @@ export type RateRuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   category?: boolean
   price?: boolean
   durationMin?: boolean
+  durationHours?: boolean
+  extraHourPrice?: boolean
   validFrom?: boolean
   validTo?: boolean
   priority?: boolean
@@ -738,6 +814,8 @@ export type RateRuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   category?: boolean
   price?: boolean
   durationMin?: boolean
+  durationHours?: boolean
+  extraHourPrice?: boolean
   validFrom?: boolean
   validTo?: boolean
   priority?: boolean
@@ -754,6 +832,8 @@ export type RateRuleSelectScalar = {
   category?: boolean
   price?: boolean
   durationMin?: boolean
+  durationHours?: boolean
+  extraHourPrice?: boolean
   validFrom?: boolean
   validTo?: boolean
   priority?: boolean
@@ -762,7 +842,7 @@ export type RateRuleSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RateRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "stayMode" | "category" | "price" | "durationMin" | "validFrom" | "validTo" | "priority" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["rateRule"]>
+export type RateRuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "stayMode" | "category" | "price" | "durationMin" | "durationHours" | "extraHourPrice" | "validFrom" | "validTo" | "priority" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["rateRule"]>
 export type RateRuleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stays?: boolean | Prisma.RateRule$staysArgs<ExtArgs>
   _count?: boolean | Prisma.RateRuleCountOutputTypeDefaultArgs<ExtArgs>
@@ -783,6 +863,8 @@ export type $RateRulePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     category: $Enums.RoomCategory
     price: runtime.Decimal
     durationMin: number | null
+    durationHours: number | null
+    extraHourPrice: runtime.Decimal | null
     validFrom: Date | null
     validTo: Date | null
     priority: number
@@ -1220,6 +1302,8 @@ export interface RateRuleFieldRefs {
   readonly category: Prisma.FieldRef<"RateRule", 'RoomCategory'>
   readonly price: Prisma.FieldRef<"RateRule", 'Decimal'>
   readonly durationMin: Prisma.FieldRef<"RateRule", 'Int'>
+  readonly durationHours: Prisma.FieldRef<"RateRule", 'Int'>
+  readonly extraHourPrice: Prisma.FieldRef<"RateRule", 'Decimal'>
   readonly validFrom: Prisma.FieldRef<"RateRule", 'DateTime'>
   readonly validTo: Prisma.FieldRef<"RateRule", 'DateTime'>
   readonly priority: Prisma.FieldRef<"RateRule", 'Int'>

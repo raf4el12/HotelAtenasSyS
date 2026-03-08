@@ -30,6 +30,15 @@ export type GuestMinAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   phone: string | null
+  documentType: $Enums.DocumentType | null
+  nationality: string | null
+  email: string | null
+  dateOfBirth: Date | null
+  gender: $Enums.Gender | null
+  address: string | null
+  city: string | null
+  country: string | null
+  notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,6 +49,15 @@ export type GuestMaxAggregateOutputType = {
   firstName: string | null
   lastName: string | null
   phone: string | null
+  documentType: $Enums.DocumentType | null
+  nationality: string | null
+  email: string | null
+  dateOfBirth: Date | null
+  gender: $Enums.Gender | null
+  address: string | null
+  city: string | null
+  country: string | null
+  notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,6 +68,15 @@ export type GuestCountAggregateOutputType = {
   firstName: number
   lastName: number
   phone: number
+  documentType: number
+  nationality: number
+  email: number
+  dateOfBirth: number
+  gender: number
+  address: number
+  city: number
+  country: number
+  notes: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -62,6 +89,15 @@ export type GuestMinAggregateInputType = {
   firstName?: true
   lastName?: true
   phone?: true
+  documentType?: true
+  nationality?: true
+  email?: true
+  dateOfBirth?: true
+  gender?: true
+  address?: true
+  city?: true
+  country?: true
+  notes?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -72,6 +108,15 @@ export type GuestMaxAggregateInputType = {
   firstName?: true
   lastName?: true
   phone?: true
+  documentType?: true
+  nationality?: true
+  email?: true
+  dateOfBirth?: true
+  gender?: true
+  address?: true
+  city?: true
+  country?: true
+  notes?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +127,15 @@ export type GuestCountAggregateInputType = {
   firstName?: true
   lastName?: true
   phone?: true
+  documentType?: true
+  nationality?: true
+  email?: true
+  dateOfBirth?: true
+  gender?: true
+  address?: true
+  city?: true
+  country?: true
+  notes?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -165,6 +219,15 @@ export type GuestGroupByOutputType = {
   firstName: string
   lastName: string
   phone: string | null
+  documentType: $Enums.DocumentType
+  nationality: string | null
+  email: string | null
+  dateOfBirth: Date | null
+  gender: $Enums.Gender | null
+  address: string | null
+  city: string | null
+  country: string | null
+  notes: string | null
   createdAt: Date
   updatedAt: Date
   _count: GuestCountAggregateOutputType | null
@@ -196,6 +259,15 @@ export type GuestWhereInput = {
   firstName?: Prisma.StringFilter<"Guest"> | string
   lastName?: Prisma.StringFilter<"Guest"> | string
   phone?: Prisma.StringNullableFilter<"Guest"> | string | null
+  documentType?: Prisma.EnumDocumentTypeFilter<"Guest"> | $Enums.DocumentType
+  nationality?: Prisma.StringNullableFilter<"Guest"> | string | null
+  email?: Prisma.StringNullableFilter<"Guest"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"Guest"> | Date | string | null
+  gender?: Prisma.EnumGenderNullableFilter<"Guest"> | $Enums.Gender | null
+  address?: Prisma.StringNullableFilter<"Guest"> | string | null
+  city?: Prisma.StringNullableFilter<"Guest"> | string | null
+  country?: Prisma.StringNullableFilter<"Guest"> | string | null
+  notes?: Prisma.StringNullableFilter<"Guest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Guest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Guest"> | Date | string
   stays?: Prisma.StayListRelationFilter
@@ -208,6 +280,15 @@ export type GuestOrderByWithRelationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  documentType?: Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  country?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   stays?: Prisma.StayOrderByRelationAggregateInput
@@ -223,6 +304,15 @@ export type GuestWhereUniqueInput = Prisma.AtLeast<{
   firstName?: Prisma.StringFilter<"Guest"> | string
   lastName?: Prisma.StringFilter<"Guest"> | string
   phone?: Prisma.StringNullableFilter<"Guest"> | string | null
+  documentType?: Prisma.EnumDocumentTypeFilter<"Guest"> | $Enums.DocumentType
+  nationality?: Prisma.StringNullableFilter<"Guest"> | string | null
+  email?: Prisma.StringNullableFilter<"Guest"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"Guest"> | Date | string | null
+  gender?: Prisma.EnumGenderNullableFilter<"Guest"> | $Enums.Gender | null
+  address?: Prisma.StringNullableFilter<"Guest"> | string | null
+  city?: Prisma.StringNullableFilter<"Guest"> | string | null
+  country?: Prisma.StringNullableFilter<"Guest"> | string | null
+  notes?: Prisma.StringNullableFilter<"Guest"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Guest"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Guest"> | Date | string
   stays?: Prisma.StayListRelationFilter
@@ -235,6 +325,15 @@ export type GuestOrderByWithAggregationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  documentType?: Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  country?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.GuestCountOrderByAggregateInput
@@ -251,6 +350,15 @@ export type GuestScalarWhereWithAggregatesInput = {
   firstName?: Prisma.StringWithAggregatesFilter<"Guest"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"Guest"> | string
   phone?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
+  documentType?: Prisma.EnumDocumentTypeWithAggregatesFilter<"Guest"> | $Enums.DocumentType
+  nationality?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableWithAggregatesFilter<"Guest"> | Date | string | null
+  gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"Guest"> | $Enums.Gender | null
+  address?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
+  country?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
+  notes?: Prisma.StringNullableWithAggregatesFilter<"Guest"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Guest"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Guest"> | Date | string
 }
@@ -261,6 +369,15 @@ export type GuestCreateInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   stays?: Prisma.StayCreateNestedManyWithoutGuestInput
@@ -273,6 +390,15 @@ export type GuestUncheckedCreateInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   stays?: Prisma.StayUncheckedCreateNestedManyWithoutGuestInput
@@ -285,6 +411,15 @@ export type GuestUpdateInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stays?: Prisma.StayUpdateManyWithoutGuestNestedInput
@@ -297,6 +432,15 @@ export type GuestUncheckedUpdateInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stays?: Prisma.StayUncheckedUpdateManyWithoutGuestNestedInput
@@ -309,6 +453,15 @@ export type GuestCreateManyInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -319,6 +472,15 @@ export type GuestUpdateManyMutationInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -329,6 +491,15 @@ export type GuestUncheckedUpdateManyInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -339,6 +510,15 @@ export type GuestCountOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  documentType?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -349,6 +529,15 @@ export type GuestMaxOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  documentType?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -359,6 +548,15 @@ export type GuestMinOrderByAggregateInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  documentType?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  country?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -366,6 +564,14 @@ export type GuestMinOrderByAggregateInput = {
 export type GuestScalarRelationFilter = {
   is?: Prisma.GuestWhereInput
   isNot?: Prisma.GuestWhereInput
+}
+
+export type EnumDocumentTypeFieldUpdateOperationsInput = {
+  set?: $Enums.DocumentType
+}
+
+export type NullableEnumGenderFieldUpdateOperationsInput = {
+  set?: $Enums.Gender | null
 }
 
 export type GuestCreateNestedOneWithoutStaysInput = {
@@ -402,6 +608,15 @@ export type GuestCreateWithoutStaysInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   reservations?: Prisma.ReservationCreateNestedManyWithoutGuestInput
@@ -413,6 +628,15 @@ export type GuestUncheckedCreateWithoutStaysInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   reservations?: Prisma.ReservationUncheckedCreateNestedManyWithoutGuestInput
@@ -440,6 +664,15 @@ export type GuestUpdateWithoutStaysInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reservations?: Prisma.ReservationUpdateManyWithoutGuestNestedInput
@@ -451,6 +684,15 @@ export type GuestUncheckedUpdateWithoutStaysInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   reservations?: Prisma.ReservationUncheckedUpdateManyWithoutGuestNestedInput
@@ -462,6 +704,15 @@ export type GuestCreateWithoutReservationsInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   stays?: Prisma.StayCreateNestedManyWithoutGuestInput
@@ -473,6 +724,15 @@ export type GuestUncheckedCreateWithoutReservationsInput = {
   firstName: string
   lastName: string
   phone?: string | null
+  documentType?: $Enums.DocumentType
+  nationality?: string | null
+  email?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  country?: string | null
+  notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   stays?: Prisma.StayUncheckedCreateNestedManyWithoutGuestInput
@@ -500,6 +760,15 @@ export type GuestUpdateWithoutReservationsInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stays?: Prisma.StayUpdateManyWithoutGuestNestedInput
@@ -511,6 +780,15 @@ export type GuestUncheckedUpdateWithoutReservationsInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  documentType?: Prisma.EnumDocumentTypeFieldUpdateOperationsInput | $Enums.DocumentType
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stays?: Prisma.StayUncheckedUpdateManyWithoutGuestNestedInput
@@ -562,6 +840,15 @@ export type GuestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
+  documentType?: boolean
+  nationality?: boolean
+  email?: boolean
+  dateOfBirth?: boolean
+  gender?: boolean
+  address?: boolean
+  city?: boolean
+  country?: boolean
+  notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   stays?: boolean | Prisma.Guest$staysArgs<ExtArgs>
@@ -575,6 +862,15 @@ export type GuestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
+  documentType?: boolean
+  nationality?: boolean
+  email?: boolean
+  dateOfBirth?: boolean
+  gender?: boolean
+  address?: boolean
+  city?: boolean
+  country?: boolean
+  notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["guest"]>
@@ -585,6 +881,15 @@ export type GuestSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
+  documentType?: boolean
+  nationality?: boolean
+  email?: boolean
+  dateOfBirth?: boolean
+  gender?: boolean
+  address?: boolean
+  city?: boolean
+  country?: boolean
+  notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["guest"]>
@@ -595,11 +900,20 @@ export type GuestSelectScalar = {
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
+  documentType?: boolean
+  nationality?: boolean
+  email?: boolean
+  dateOfBirth?: boolean
+  gender?: boolean
+  address?: boolean
+  city?: boolean
+  country?: boolean
+  notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type GuestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dni" | "firstName" | "lastName" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["guest"]>
+export type GuestOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dni" | "firstName" | "lastName" | "phone" | "documentType" | "nationality" | "email" | "dateOfBirth" | "gender" | "address" | "city" | "country" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["guest"]>
 export type GuestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stays?: boolean | Prisma.Guest$staysArgs<ExtArgs>
   reservations?: boolean | Prisma.Guest$reservationsArgs<ExtArgs>
@@ -620,6 +934,15 @@ export type $GuestPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     firstName: string
     lastName: string
     phone: string | null
+    documentType: $Enums.DocumentType
+    nationality: string | null
+    email: string | null
+    dateOfBirth: Date | null
+    gender: $Enums.Gender | null
+    address: string | null
+    city: string | null
+    country: string | null
+    notes: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["guest"]>
@@ -1052,6 +1375,15 @@ export interface GuestFieldRefs {
   readonly firstName: Prisma.FieldRef<"Guest", 'String'>
   readonly lastName: Prisma.FieldRef<"Guest", 'String'>
   readonly phone: Prisma.FieldRef<"Guest", 'String'>
+  readonly documentType: Prisma.FieldRef<"Guest", 'DocumentType'>
+  readonly nationality: Prisma.FieldRef<"Guest", 'String'>
+  readonly email: Prisma.FieldRef<"Guest", 'String'>
+  readonly dateOfBirth: Prisma.FieldRef<"Guest", 'DateTime'>
+  readonly gender: Prisma.FieldRef<"Guest", 'Gender'>
+  readonly address: Prisma.FieldRef<"Guest", 'String'>
+  readonly city: Prisma.FieldRef<"Guest", 'String'>
+  readonly country: Prisma.FieldRef<"Guest", 'String'>
+  readonly notes: Prisma.FieldRef<"Guest", 'String'>
   readonly createdAt: Prisma.FieldRef<"Guest", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Guest", 'DateTime'>
 }

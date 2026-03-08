@@ -77,7 +77,10 @@ export type ReservationStatus = (typeof ReservationStatus)[keyof typeof Reservat
 
 export const PaymentMethod = {
   CASH: 'CASH',
-  YAPE: 'YAPE'
+  YAPE: 'YAPE',
+  PLIN: 'PLIN',
+  TRANSFER: 'TRANSFER',
+  CARD: 'CARD'
 } as const
 
 export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
@@ -111,3 +114,51 @@ export const ProductStatus = {
 } as const
 
 export type ProductStatus = (typeof ProductStatus)[keyof typeof ProductStatus]
+
+
+export const DocumentType = {
+  DNI: 'DNI',
+  PASSPORT: 'PASSPORT',
+  CE: 'CE',
+  OTHER: 'OTHER'
+} as const
+
+export type DocumentType = (typeof DocumentType)[keyof typeof DocumentType]
+
+
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
+export const ReservationSource = {
+  WALK_IN: 'WALK_IN',
+  PHONE: 'PHONE',
+  WHATSAPP: 'WHATSAPP',
+  BOOKING: 'BOOKING',
+  REFERRAL: 'REFERRAL'
+} as const
+
+export type ReservationSource = (typeof ReservationSource)[keyof typeof ReservationSource]
+
+
+export const BedType = {
+  SINGLE: 'SINGLE',
+  DOUBLE: 'DOUBLE',
+  QUEEN: 'QUEEN',
+  KING: 'KING'
+} as const
+
+export type BedType = (typeof BedType)[keyof typeof BedType]
+
+
+export const SaleStatus = {
+  COMPLETED: 'COMPLETED',
+  VOIDED: 'VOIDED'
+} as const
+
+export type SaleStatus = (typeof SaleStatus)[keyof typeof SaleStatus]

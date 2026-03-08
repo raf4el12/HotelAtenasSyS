@@ -28,10 +28,12 @@ export type AggregateStay = {
 
 export type StayAvgAggregateOutputType = {
   stayPrice: runtime.Decimal | null
+  guestCount: number | null
 }
 
 export type StaySumAggregateOutputType = {
   stayPrice: runtime.Decimal | null
+  guestCount: number | null
 }
 
 export type StayMinAggregateOutputType = {
@@ -42,6 +44,9 @@ export type StayMinAggregateOutputType = {
   rateRuleId: string | null
   packageId: string | null
   stayPrice: runtime.Decimal | null
+  guestCount: number | null
+  vehiclePlate: string | null
+  notes: string | null
   checkIn: Date | null
   checkOut: Date | null
   actualCheckOut: Date | null
@@ -49,6 +54,9 @@ export type StayMinAggregateOutputType = {
   reservationId: string | null
   createdById: string | null
   checkedOutById: string | null
+  cancelledAt: Date | null
+  cancelledById: string | null
+  cancelReason: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -61,6 +69,9 @@ export type StayMaxAggregateOutputType = {
   rateRuleId: string | null
   packageId: string | null
   stayPrice: runtime.Decimal | null
+  guestCount: number | null
+  vehiclePlate: string | null
+  notes: string | null
   checkIn: Date | null
   checkOut: Date | null
   actualCheckOut: Date | null
@@ -68,6 +79,9 @@ export type StayMaxAggregateOutputType = {
   reservationId: string | null
   createdById: string | null
   checkedOutById: string | null
+  cancelledAt: Date | null
+  cancelledById: string | null
+  cancelReason: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -80,6 +94,9 @@ export type StayCountAggregateOutputType = {
   rateRuleId: number
   packageId: number
   stayPrice: number
+  guestCount: number
+  vehiclePlate: number
+  notes: number
   checkIn: number
   checkOut: number
   actualCheckOut: number
@@ -87,6 +104,9 @@ export type StayCountAggregateOutputType = {
   reservationId: number
   createdById: number
   checkedOutById: number
+  cancelledAt: number
+  cancelledById: number
+  cancelReason: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -95,10 +115,12 @@ export type StayCountAggregateOutputType = {
 
 export type StayAvgAggregateInputType = {
   stayPrice?: true
+  guestCount?: true
 }
 
 export type StaySumAggregateInputType = {
   stayPrice?: true
+  guestCount?: true
 }
 
 export type StayMinAggregateInputType = {
@@ -109,6 +131,9 @@ export type StayMinAggregateInputType = {
   rateRuleId?: true
   packageId?: true
   stayPrice?: true
+  guestCount?: true
+  vehiclePlate?: true
+  notes?: true
   checkIn?: true
   checkOut?: true
   actualCheckOut?: true
@@ -116,6 +141,9 @@ export type StayMinAggregateInputType = {
   reservationId?: true
   createdById?: true
   checkedOutById?: true
+  cancelledAt?: true
+  cancelledById?: true
+  cancelReason?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -128,6 +156,9 @@ export type StayMaxAggregateInputType = {
   rateRuleId?: true
   packageId?: true
   stayPrice?: true
+  guestCount?: true
+  vehiclePlate?: true
+  notes?: true
   checkIn?: true
   checkOut?: true
   actualCheckOut?: true
@@ -135,6 +166,9 @@ export type StayMaxAggregateInputType = {
   reservationId?: true
   createdById?: true
   checkedOutById?: true
+  cancelledAt?: true
+  cancelledById?: true
+  cancelReason?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -147,6 +181,9 @@ export type StayCountAggregateInputType = {
   rateRuleId?: true
   packageId?: true
   stayPrice?: true
+  guestCount?: true
+  vehiclePlate?: true
+  notes?: true
   checkIn?: true
   checkOut?: true
   actualCheckOut?: true
@@ -154,6 +191,9 @@ export type StayCountAggregateInputType = {
   reservationId?: true
   createdById?: true
   checkedOutById?: true
+  cancelledAt?: true
+  cancelledById?: true
+  cancelReason?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -253,6 +293,9 @@ export type StayGroupByOutputType = {
   rateRuleId: string | null
   packageId: string | null
   stayPrice: runtime.Decimal
+  guestCount: number
+  vehiclePlate: string | null
+  notes: string | null
   checkIn: Date
   checkOut: Date
   actualCheckOut: Date | null
@@ -260,6 +303,9 @@ export type StayGroupByOutputType = {
   reservationId: string | null
   createdById: string
   checkedOutById: string | null
+  cancelledAt: Date | null
+  cancelledById: string | null
+  cancelReason: string | null
   createdAt: Date
   updatedAt: Date
   _count: StayCountAggregateOutputType | null
@@ -295,6 +341,9 @@ export type StayWhereInput = {
   rateRuleId?: Prisma.StringNullableFilter<"Stay"> | string | null
   packageId?: Prisma.StringNullableFilter<"Stay"> | string | null
   stayPrice?: Prisma.DecimalFilter<"Stay"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFilter<"Stay"> | number
+  vehiclePlate?: Prisma.StringNullableFilter<"Stay"> | string | null
+  notes?: Prisma.StringNullableFilter<"Stay"> | string | null
   checkIn?: Prisma.DateTimeFilter<"Stay"> | Date | string
   checkOut?: Prisma.DateTimeFilter<"Stay"> | Date | string
   actualCheckOut?: Prisma.DateTimeNullableFilter<"Stay"> | Date | string | null
@@ -302,6 +351,9 @@ export type StayWhereInput = {
   reservationId?: Prisma.StringNullableFilter<"Stay"> | string | null
   createdById?: Prisma.StringFilter<"Stay"> | string
   checkedOutById?: Prisma.StringNullableFilter<"Stay"> | string | null
+  cancelledAt?: Prisma.DateTimeNullableFilter<"Stay"> | Date | string | null
+  cancelledById?: Prisma.StringNullableFilter<"Stay"> | string | null
+  cancelReason?: Prisma.StringNullableFilter<"Stay"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Stay"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stay"> | Date | string
   guest?: Prisma.XOR<Prisma.GuestScalarRelationFilter, Prisma.GuestWhereInput>
@@ -311,6 +363,7 @@ export type StayWhereInput = {
   reservation?: Prisma.XOR<Prisma.ReservationNullableScalarRelationFilter, Prisma.ReservationWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   checkedOutBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  cancelledBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   payments?: Prisma.PaymentListRelationFilter
   sales?: Prisma.SaleListRelationFilter
 }
@@ -323,6 +376,9 @@ export type StayOrderByWithRelationInput = {
   rateRuleId?: Prisma.SortOrderInput | Prisma.SortOrder
   packageId?: Prisma.SortOrderInput | Prisma.SortOrder
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
+  vehiclePlate?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   checkIn?: Prisma.SortOrder
   checkOut?: Prisma.SortOrder
   actualCheckOut?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -330,6 +386,9 @@ export type StayOrderByWithRelationInput = {
   reservationId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   checkedOutById?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledById?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   guest?: Prisma.GuestOrderByWithRelationInput
@@ -339,6 +398,7 @@ export type StayOrderByWithRelationInput = {
   reservation?: Prisma.ReservationOrderByWithRelationInput
   createdBy?: Prisma.UserOrderByWithRelationInput
   checkedOutBy?: Prisma.UserOrderByWithRelationInput
+  cancelledBy?: Prisma.UserOrderByWithRelationInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
   sales?: Prisma.SaleOrderByRelationAggregateInput
 }
@@ -355,12 +415,18 @@ export type StayWhereUniqueInput = Prisma.AtLeast<{
   rateRuleId?: Prisma.StringNullableFilter<"Stay"> | string | null
   packageId?: Prisma.StringNullableFilter<"Stay"> | string | null
   stayPrice?: Prisma.DecimalFilter<"Stay"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFilter<"Stay"> | number
+  vehiclePlate?: Prisma.StringNullableFilter<"Stay"> | string | null
+  notes?: Prisma.StringNullableFilter<"Stay"> | string | null
   checkIn?: Prisma.DateTimeFilter<"Stay"> | Date | string
   checkOut?: Prisma.DateTimeFilter<"Stay"> | Date | string
   actualCheckOut?: Prisma.DateTimeNullableFilter<"Stay"> | Date | string | null
   status?: Prisma.EnumStayStatusFilter<"Stay"> | $Enums.StayStatus
   createdById?: Prisma.StringFilter<"Stay"> | string
   checkedOutById?: Prisma.StringNullableFilter<"Stay"> | string | null
+  cancelledAt?: Prisma.DateTimeNullableFilter<"Stay"> | Date | string | null
+  cancelledById?: Prisma.StringNullableFilter<"Stay"> | string | null
+  cancelReason?: Prisma.StringNullableFilter<"Stay"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Stay"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stay"> | Date | string
   guest?: Prisma.XOR<Prisma.GuestScalarRelationFilter, Prisma.GuestWhereInput>
@@ -370,6 +436,7 @@ export type StayWhereUniqueInput = Prisma.AtLeast<{
   reservation?: Prisma.XOR<Prisma.ReservationNullableScalarRelationFilter, Prisma.ReservationWhereInput> | null
   createdBy?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   checkedOutBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  cancelledBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   payments?: Prisma.PaymentListRelationFilter
   sales?: Prisma.SaleListRelationFilter
 }, "id" | "reservationId">
@@ -382,6 +449,9 @@ export type StayOrderByWithAggregationInput = {
   rateRuleId?: Prisma.SortOrderInput | Prisma.SortOrder
   packageId?: Prisma.SortOrderInput | Prisma.SortOrder
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
+  vehiclePlate?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   checkIn?: Prisma.SortOrder
   checkOut?: Prisma.SortOrder
   actualCheckOut?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -389,6 +459,9 @@ export type StayOrderByWithAggregationInput = {
   reservationId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdById?: Prisma.SortOrder
   checkedOutById?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelledById?: Prisma.SortOrderInput | Prisma.SortOrder
+  cancelReason?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StayCountOrderByAggregateInput
@@ -409,6 +482,9 @@ export type StayScalarWhereWithAggregatesInput = {
   rateRuleId?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
   packageId?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
   stayPrice?: Prisma.DecimalWithAggregatesFilter<"Stay"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntWithAggregatesFilter<"Stay"> | number
+  vehiclePlate?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
+  notes?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
   checkIn?: Prisma.DateTimeWithAggregatesFilter<"Stay"> | Date | string
   checkOut?: Prisma.DateTimeWithAggregatesFilter<"Stay"> | Date | string
   actualCheckOut?: Prisma.DateTimeNullableWithAggregatesFilter<"Stay"> | Date | string | null
@@ -416,6 +492,9 @@ export type StayScalarWhereWithAggregatesInput = {
   reservationId?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
   createdById?: Prisma.StringWithAggregatesFilter<"Stay"> | string
   checkedOutById?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
+  cancelledAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Stay"> | Date | string | null
+  cancelledById?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
+  cancelReason?: Prisma.StringNullableWithAggregatesFilter<"Stay"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Stay"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Stay"> | Date | string
 }
@@ -424,10 +503,15 @@ export type StayCreateInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -437,6 +521,7 @@ export type StayCreateInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -449,6 +534,9 @@ export type StayUncheckedCreateInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -456,6 +544,9 @@ export type StayUncheckedCreateInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -466,10 +557,15 @@ export type StayUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -479,6 +575,7 @@ export type StayUpdateInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -491,6 +588,9 @@ export type StayUncheckedUpdateInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -498,6 +598,9 @@ export type StayUncheckedUpdateInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -512,6 +615,9 @@ export type StayCreateManyInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -519,6 +625,9 @@ export type StayCreateManyInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -527,10 +636,15 @@ export type StayUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -543,6 +657,9 @@ export type StayUncheckedUpdateManyInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -550,6 +667,9 @@ export type StayUncheckedUpdateManyInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -577,6 +697,9 @@ export type StayCountOrderByAggregateInput = {
   rateRuleId?: Prisma.SortOrder
   packageId?: Prisma.SortOrder
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
+  vehiclePlate?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   checkIn?: Prisma.SortOrder
   checkOut?: Prisma.SortOrder
   actualCheckOut?: Prisma.SortOrder
@@ -584,12 +707,16 @@ export type StayCountOrderByAggregateInput = {
   reservationId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   checkedOutById?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrder
+  cancelReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type StayAvgOrderByAggregateInput = {
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
 }
 
 export type StayMaxOrderByAggregateInput = {
@@ -600,6 +727,9 @@ export type StayMaxOrderByAggregateInput = {
   rateRuleId?: Prisma.SortOrder
   packageId?: Prisma.SortOrder
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
+  vehiclePlate?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   checkIn?: Prisma.SortOrder
   checkOut?: Prisma.SortOrder
   actualCheckOut?: Prisma.SortOrder
@@ -607,6 +737,9 @@ export type StayMaxOrderByAggregateInput = {
   reservationId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   checkedOutById?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrder
+  cancelReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -619,6 +752,9 @@ export type StayMinOrderByAggregateInput = {
   rateRuleId?: Prisma.SortOrder
   packageId?: Prisma.SortOrder
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
+  vehiclePlate?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   checkIn?: Prisma.SortOrder
   checkOut?: Prisma.SortOrder
   actualCheckOut?: Prisma.SortOrder
@@ -626,12 +762,16 @@ export type StayMinOrderByAggregateInput = {
   reservationId?: Prisma.SortOrder
   createdById?: Prisma.SortOrder
   checkedOutById?: Prisma.SortOrder
+  cancelledAt?: Prisma.SortOrder
+  cancelledById?: Prisma.SortOrder
+  cancelReason?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type StaySumOrderByAggregateInput = {
   stayPrice?: Prisma.SortOrder
+  guestCount?: Prisma.SortOrder
 }
 
 export type StayCreateNestedManyWithoutCreatedByInput = {
@@ -648,6 +788,13 @@ export type StayCreateNestedManyWithoutCheckedOutByInput = {
   connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
 }
 
+export type StayCreateNestedManyWithoutCancelledByInput = {
+  create?: Prisma.XOR<Prisma.StayCreateWithoutCancelledByInput, Prisma.StayUncheckedCreateWithoutCancelledByInput> | Prisma.StayCreateWithoutCancelledByInput[] | Prisma.StayUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.StayCreateOrConnectWithoutCancelledByInput | Prisma.StayCreateOrConnectWithoutCancelledByInput[]
+  createMany?: Prisma.StayCreateManyCancelledByInputEnvelope
+  connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+}
+
 export type StayUncheckedCreateNestedManyWithoutCreatedByInput = {
   create?: Prisma.XOR<Prisma.StayCreateWithoutCreatedByInput, Prisma.StayUncheckedCreateWithoutCreatedByInput> | Prisma.StayCreateWithoutCreatedByInput[] | Prisma.StayUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.StayCreateOrConnectWithoutCreatedByInput | Prisma.StayCreateOrConnectWithoutCreatedByInput[]
@@ -659,6 +806,13 @@ export type StayUncheckedCreateNestedManyWithoutCheckedOutByInput = {
   create?: Prisma.XOR<Prisma.StayCreateWithoutCheckedOutByInput, Prisma.StayUncheckedCreateWithoutCheckedOutByInput> | Prisma.StayCreateWithoutCheckedOutByInput[] | Prisma.StayUncheckedCreateWithoutCheckedOutByInput[]
   connectOrCreate?: Prisma.StayCreateOrConnectWithoutCheckedOutByInput | Prisma.StayCreateOrConnectWithoutCheckedOutByInput[]
   createMany?: Prisma.StayCreateManyCheckedOutByInputEnvelope
+  connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+}
+
+export type StayUncheckedCreateNestedManyWithoutCancelledByInput = {
+  create?: Prisma.XOR<Prisma.StayCreateWithoutCancelledByInput, Prisma.StayUncheckedCreateWithoutCancelledByInput> | Prisma.StayCreateWithoutCancelledByInput[] | Prisma.StayUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.StayCreateOrConnectWithoutCancelledByInput | Prisma.StayCreateOrConnectWithoutCancelledByInput[]
+  createMany?: Prisma.StayCreateManyCancelledByInputEnvelope
   connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
 }
 
@@ -690,6 +844,20 @@ export type StayUpdateManyWithoutCheckedOutByNestedInput = {
   deleteMany?: Prisma.StayScalarWhereInput | Prisma.StayScalarWhereInput[]
 }
 
+export type StayUpdateManyWithoutCancelledByNestedInput = {
+  create?: Prisma.XOR<Prisma.StayCreateWithoutCancelledByInput, Prisma.StayUncheckedCreateWithoutCancelledByInput> | Prisma.StayCreateWithoutCancelledByInput[] | Prisma.StayUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.StayCreateOrConnectWithoutCancelledByInput | Prisma.StayCreateOrConnectWithoutCancelledByInput[]
+  upsert?: Prisma.StayUpsertWithWhereUniqueWithoutCancelledByInput | Prisma.StayUpsertWithWhereUniqueWithoutCancelledByInput[]
+  createMany?: Prisma.StayCreateManyCancelledByInputEnvelope
+  set?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  disconnect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  delete?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  update?: Prisma.StayUpdateWithWhereUniqueWithoutCancelledByInput | Prisma.StayUpdateWithWhereUniqueWithoutCancelledByInput[]
+  updateMany?: Prisma.StayUpdateManyWithWhereWithoutCancelledByInput | Prisma.StayUpdateManyWithWhereWithoutCancelledByInput[]
+  deleteMany?: Prisma.StayScalarWhereInput | Prisma.StayScalarWhereInput[]
+}
+
 export type StayUncheckedUpdateManyWithoutCreatedByNestedInput = {
   create?: Prisma.XOR<Prisma.StayCreateWithoutCreatedByInput, Prisma.StayUncheckedCreateWithoutCreatedByInput> | Prisma.StayCreateWithoutCreatedByInput[] | Prisma.StayUncheckedCreateWithoutCreatedByInput[]
   connectOrCreate?: Prisma.StayCreateOrConnectWithoutCreatedByInput | Prisma.StayCreateOrConnectWithoutCreatedByInput[]
@@ -715,6 +883,20 @@ export type StayUncheckedUpdateManyWithoutCheckedOutByNestedInput = {
   connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
   update?: Prisma.StayUpdateWithWhereUniqueWithoutCheckedOutByInput | Prisma.StayUpdateWithWhereUniqueWithoutCheckedOutByInput[]
   updateMany?: Prisma.StayUpdateManyWithWhereWithoutCheckedOutByInput | Prisma.StayUpdateManyWithWhereWithoutCheckedOutByInput[]
+  deleteMany?: Prisma.StayScalarWhereInput | Prisma.StayScalarWhereInput[]
+}
+
+export type StayUncheckedUpdateManyWithoutCancelledByNestedInput = {
+  create?: Prisma.XOR<Prisma.StayCreateWithoutCancelledByInput, Prisma.StayUncheckedCreateWithoutCancelledByInput> | Prisma.StayCreateWithoutCancelledByInput[] | Prisma.StayUncheckedCreateWithoutCancelledByInput[]
+  connectOrCreate?: Prisma.StayCreateOrConnectWithoutCancelledByInput | Prisma.StayCreateOrConnectWithoutCancelledByInput[]
+  upsert?: Prisma.StayUpsertWithWhereUniqueWithoutCancelledByInput | Prisma.StayUpsertWithWhereUniqueWithoutCancelledByInput[]
+  createMany?: Prisma.StayCreateManyCancelledByInputEnvelope
+  set?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  disconnect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  delete?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  connect?: Prisma.StayWhereUniqueInput | Prisma.StayWhereUniqueInput[]
+  update?: Prisma.StayUpdateWithWhereUniqueWithoutCancelledByInput | Prisma.StayUpdateWithWhereUniqueWithoutCancelledByInput[]
+  updateMany?: Prisma.StayUpdateManyWithWhereWithoutCancelledByInput | Prisma.StayUpdateManyWithWhereWithoutCancelledByInput[]
   deleteMany?: Prisma.StayScalarWhereInput | Prisma.StayScalarWhereInput[]
 }
 
@@ -958,10 +1140,15 @@ export type StayCreateWithoutCreatedByInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -970,6 +1157,7 @@ export type StayCreateWithoutCreatedByInput = {
   package?: Prisma.PackageCreateNestedOneWithoutStaysInput
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -982,12 +1170,18 @@ export type StayUncheckedCreateWithoutCreatedByInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
   reservationId?: string | null
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1008,10 +1202,15 @@ export type StayCreateWithoutCheckedOutByInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1020,6 +1219,7 @@ export type StayCreateWithoutCheckedOutByInput = {
   package?: Prisma.PackageCreateNestedOneWithoutStaysInput
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -1032,12 +1232,18 @@ export type StayUncheckedCreateWithoutCheckedOutByInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
   reservationId?: string | null
   createdById: string
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1051,6 +1257,68 @@ export type StayCreateOrConnectWithoutCheckedOutByInput = {
 
 export type StayCreateManyCheckedOutByInputEnvelope = {
   data: Prisma.StayCreateManyCheckedOutByInput | Prisma.StayCreateManyCheckedOutByInput[]
+  skipDuplicates?: boolean
+}
+
+export type StayCreateWithoutCancelledByInput = {
+  id?: string
+  stayMode: $Enums.StayMode
+  stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
+  checkIn?: Date | string
+  checkOut: Date | string
+  actualCheckOut?: Date | string | null
+  status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  guest: Prisma.GuestCreateNestedOneWithoutStaysInput
+  room: Prisma.RoomCreateNestedOneWithoutStaysInput
+  rateRule?: Prisma.RateRuleCreateNestedOneWithoutStaysInput
+  package?: Prisma.PackageCreateNestedOneWithoutStaysInput
+  reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
+  createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
+  checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
+  sales?: Prisma.SaleCreateNestedManyWithoutStayInput
+}
+
+export type StayUncheckedCreateWithoutCancelledByInput = {
+  id?: string
+  guestId: string
+  roomId: string
+  stayMode: $Enums.StayMode
+  rateRuleId?: string | null
+  packageId?: string | null
+  stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
+  checkIn?: Date | string
+  checkOut: Date | string
+  actualCheckOut?: Date | string | null
+  status?: $Enums.StayStatus
+  reservationId?: string | null
+  createdById: string
+  checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
+  sales?: Prisma.SaleUncheckedCreateNestedManyWithoutStayInput
+}
+
+export type StayCreateOrConnectWithoutCancelledByInput = {
+  where: Prisma.StayWhereUniqueInput
+  create: Prisma.XOR<Prisma.StayCreateWithoutCancelledByInput, Prisma.StayUncheckedCreateWithoutCancelledByInput>
+}
+
+export type StayCreateManyCancelledByInputEnvelope = {
+  data: Prisma.StayCreateManyCancelledByInput | Prisma.StayCreateManyCancelledByInput[]
   skipDuplicates?: boolean
 }
 
@@ -1081,6 +1349,9 @@ export type StayScalarWhereInput = {
   rateRuleId?: Prisma.StringNullableFilter<"Stay"> | string | null
   packageId?: Prisma.StringNullableFilter<"Stay"> | string | null
   stayPrice?: Prisma.DecimalFilter<"Stay"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFilter<"Stay"> | number
+  vehiclePlate?: Prisma.StringNullableFilter<"Stay"> | string | null
+  notes?: Prisma.StringNullableFilter<"Stay"> | string | null
   checkIn?: Prisma.DateTimeFilter<"Stay"> | Date | string
   checkOut?: Prisma.DateTimeFilter<"Stay"> | Date | string
   actualCheckOut?: Prisma.DateTimeNullableFilter<"Stay"> | Date | string | null
@@ -1088,6 +1359,9 @@ export type StayScalarWhereInput = {
   reservationId?: Prisma.StringNullableFilter<"Stay"> | string | null
   createdById?: Prisma.StringFilter<"Stay"> | string
   checkedOutById?: Prisma.StringNullableFilter<"Stay"> | string | null
+  cancelledAt?: Prisma.DateTimeNullableFilter<"Stay"> | Date | string | null
+  cancelledById?: Prisma.StringNullableFilter<"Stay"> | string | null
+  cancelReason?: Prisma.StringNullableFilter<"Stay"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Stay"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Stay"> | Date | string
 }
@@ -1108,14 +1382,35 @@ export type StayUpdateManyWithWhereWithoutCheckedOutByInput = {
   data: Prisma.XOR<Prisma.StayUpdateManyMutationInput, Prisma.StayUncheckedUpdateManyWithoutCheckedOutByInput>
 }
 
+export type StayUpsertWithWhereUniqueWithoutCancelledByInput = {
+  where: Prisma.StayWhereUniqueInput
+  update: Prisma.XOR<Prisma.StayUpdateWithoutCancelledByInput, Prisma.StayUncheckedUpdateWithoutCancelledByInput>
+  create: Prisma.XOR<Prisma.StayCreateWithoutCancelledByInput, Prisma.StayUncheckedCreateWithoutCancelledByInput>
+}
+
+export type StayUpdateWithWhereUniqueWithoutCancelledByInput = {
+  where: Prisma.StayWhereUniqueInput
+  data: Prisma.XOR<Prisma.StayUpdateWithoutCancelledByInput, Prisma.StayUncheckedUpdateWithoutCancelledByInput>
+}
+
+export type StayUpdateManyWithWhereWithoutCancelledByInput = {
+  where: Prisma.StayScalarWhereInput
+  data: Prisma.XOR<Prisma.StayUpdateManyMutationInput, Prisma.StayUncheckedUpdateManyWithoutCancelledByInput>
+}
+
 export type StayCreateWithoutRoomInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1124,6 +1419,7 @@ export type StayCreateWithoutRoomInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -1135,6 +1431,9 @@ export type StayUncheckedCreateWithoutRoomInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1142,6 +1441,9 @@ export type StayUncheckedCreateWithoutRoomInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1178,10 +1480,15 @@ export type StayCreateWithoutGuestInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   room: Prisma.RoomCreateNestedOneWithoutStaysInput
@@ -1190,6 +1497,7 @@ export type StayCreateWithoutGuestInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -1201,6 +1509,9 @@ export type StayUncheckedCreateWithoutGuestInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1208,6 +1519,9 @@ export type StayUncheckedCreateWithoutGuestInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1244,10 +1558,15 @@ export type StayCreateWithoutRateRuleInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1256,6 +1575,7 @@ export type StayCreateWithoutRateRuleInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -1267,6 +1587,9 @@ export type StayUncheckedCreateWithoutRateRuleInput = {
   stayMode: $Enums.StayMode
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1274,6 +1597,9 @@ export type StayUncheckedCreateWithoutRateRuleInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1310,10 +1636,15 @@ export type StayCreateWithoutPackageInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1322,6 +1653,7 @@ export type StayCreateWithoutPackageInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -1333,6 +1665,9 @@ export type StayUncheckedCreateWithoutPackageInput = {
   stayMode: $Enums.StayMode
   rateRuleId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1340,6 +1675,9 @@ export type StayUncheckedCreateWithoutPackageInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1376,10 +1714,15 @@ export type StayCreateWithoutSalesInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1389,6 +1732,7 @@ export type StayCreateWithoutSalesInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
 }
 
@@ -1400,6 +1744,9 @@ export type StayUncheckedCreateWithoutSalesInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1407,6 +1754,9 @@ export type StayUncheckedCreateWithoutSalesInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1432,10 +1782,15 @@ export type StayUpdateWithoutSalesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1445,6 +1800,7 @@ export type StayUpdateWithoutSalesInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
 }
 
@@ -1456,6 +1812,9 @@ export type StayUncheckedUpdateWithoutSalesInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1463,6 +1822,9 @@ export type StayUncheckedUpdateWithoutSalesInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -1472,10 +1834,15 @@ export type StayCreateWithoutReservationInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1484,6 +1851,7 @@ export type StayCreateWithoutReservationInput = {
   package?: Prisma.PackageCreateNestedOneWithoutStaysInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   payments?: Prisma.PaymentCreateNestedManyWithoutStayInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
@@ -1496,12 +1864,18 @@ export type StayUncheckedCreateWithoutReservationInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutStayInput
@@ -1528,10 +1902,15 @@ export type StayUpdateWithoutReservationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1540,6 +1919,7 @@ export type StayUpdateWithoutReservationInput = {
   package?: Prisma.PackageUpdateOneWithoutStaysNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -1552,12 +1932,18 @@ export type StayUncheckedUpdateWithoutReservationInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -1568,10 +1954,15 @@ export type StayCreateWithoutPaymentsInput = {
   id?: string
   stayMode: $Enums.StayMode
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   guest: Prisma.GuestCreateNestedOneWithoutStaysInput
@@ -1581,6 +1972,7 @@ export type StayCreateWithoutPaymentsInput = {
   reservation?: Prisma.ReservationCreateNestedOneWithoutStayInput
   createdBy: Prisma.UserCreateNestedOneWithoutStaysCreatedInput
   checkedOutBy?: Prisma.UserCreateNestedOneWithoutStaysCheckedOutInput
+  cancelledBy?: Prisma.UserCreateNestedOneWithoutStaysCancelledInput
   sales?: Prisma.SaleCreateNestedManyWithoutStayInput
 }
 
@@ -1592,6 +1984,9 @@ export type StayUncheckedCreateWithoutPaymentsInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1599,6 +1994,9 @@ export type StayUncheckedCreateWithoutPaymentsInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   sales?: Prisma.SaleUncheckedCreateNestedManyWithoutStayInput
@@ -1624,10 +2022,15 @@ export type StayUpdateWithoutPaymentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1637,6 +2040,7 @@ export type StayUpdateWithoutPaymentsInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
 
@@ -1648,6 +2052,9 @@ export type StayUncheckedUpdateWithoutPaymentsInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1655,6 +2062,9 @@ export type StayUncheckedUpdateWithoutPaymentsInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sales?: Prisma.SaleUncheckedUpdateManyWithoutStayNestedInput
@@ -1668,12 +2078,18 @@ export type StayCreateManyCreatedByInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
   reservationId?: string | null
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1686,12 +2102,42 @@ export type StayCreateManyCheckedOutByInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
   status?: $Enums.StayStatus
   reservationId?: string | null
   createdById: string
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type StayCreateManyCancelledByInput = {
+  id?: string
+  guestId: string
+  roomId: string
+  stayMode: $Enums.StayMode
+  rateRuleId?: string | null
+  packageId?: string | null
+  stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
+  checkIn?: Date | string
+  checkOut: Date | string
+  actualCheckOut?: Date | string | null
+  status?: $Enums.StayStatus
+  reservationId?: string | null
+  createdById: string
+  checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1700,10 +2146,15 @@ export type StayUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1712,6 +2163,7 @@ export type StayUpdateWithoutCreatedByInput = {
   package?: Prisma.PackageUpdateOneWithoutStaysNestedInput
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -1724,12 +2176,18 @@ export type StayUncheckedUpdateWithoutCreatedByInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -1744,12 +2202,18 @@ export type StayUncheckedUpdateManyWithoutCreatedByInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1758,10 +2222,15 @@ export type StayUpdateWithoutCheckedOutByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1770,6 +2239,7 @@ export type StayUpdateWithoutCheckedOutByInput = {
   package?: Prisma.PackageUpdateOneWithoutStaysNestedInput
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -1782,12 +2252,18 @@ export type StayUncheckedUpdateWithoutCheckedOutByInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -1802,12 +2278,94 @@ export type StayUncheckedUpdateManyWithoutCheckedOutByInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type StayUpdateWithoutCancelledByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
+  stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
+  room?: Prisma.RoomUpdateOneRequiredWithoutStaysNestedInput
+  rateRule?: Prisma.RateRuleUpdateOneWithoutStaysNestedInput
+  package?: Prisma.PackageUpdateOneWithoutStaysNestedInput
+  reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
+  createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
+  checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
+  sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
+}
+
+export type StayUncheckedUpdateWithoutCancelledByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  guestId?: Prisma.StringFieldUpdateOperationsInput | string
+  roomId?: Prisma.StringFieldUpdateOperationsInput | string
+  stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
+  rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
+  sales?: Prisma.SaleUncheckedUpdateManyWithoutStayNestedInput
+}
+
+export type StayUncheckedUpdateManyWithoutCancelledByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  guestId?: Prisma.StringFieldUpdateOperationsInput | string
+  roomId?: Prisma.StringFieldUpdateOperationsInput | string
+  stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
+  rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdById?: Prisma.StringFieldUpdateOperationsInput | string
+  checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1819,6 +2377,9 @@ export type StayCreateManyRoomInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1826,6 +2387,9 @@ export type StayCreateManyRoomInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1834,10 +2398,15 @@ export type StayUpdateWithoutRoomInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1846,6 +2415,7 @@ export type StayUpdateWithoutRoomInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -1857,6 +2427,9 @@ export type StayUncheckedUpdateWithoutRoomInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1864,6 +2437,9 @@ export type StayUncheckedUpdateWithoutRoomInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -1877,6 +2453,9 @@ export type StayUncheckedUpdateManyWithoutRoomInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1884,6 +2463,9 @@ export type StayUncheckedUpdateManyWithoutRoomInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1895,6 +2477,9 @@ export type StayCreateManyGuestInput = {
   rateRuleId?: string | null
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1902,6 +2487,9 @@ export type StayCreateManyGuestInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1910,10 +2498,15 @@ export type StayUpdateWithoutGuestInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   room?: Prisma.RoomUpdateOneRequiredWithoutStaysNestedInput
@@ -1922,6 +2515,7 @@ export type StayUpdateWithoutGuestInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -1933,6 +2527,9 @@ export type StayUncheckedUpdateWithoutGuestInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1940,6 +2537,9 @@ export type StayUncheckedUpdateWithoutGuestInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -1953,6 +2553,9 @@ export type StayUncheckedUpdateManyWithoutGuestInput = {
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1960,6 +2563,9 @@ export type StayUncheckedUpdateManyWithoutGuestInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1971,6 +2577,9 @@ export type StayCreateManyRateRuleInput = {
   stayMode: $Enums.StayMode
   packageId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -1978,6 +2587,9 @@ export type StayCreateManyRateRuleInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1986,10 +2598,15 @@ export type StayUpdateWithoutRateRuleInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -1998,6 +2615,7 @@ export type StayUpdateWithoutRateRuleInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -2009,6 +2627,9 @@ export type StayUncheckedUpdateWithoutRateRuleInput = {
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2016,6 +2637,9 @@ export type StayUncheckedUpdateWithoutRateRuleInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -2029,6 +2653,9 @@ export type StayUncheckedUpdateManyWithoutRateRuleInput = {
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   packageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2036,6 +2663,9 @@ export type StayUncheckedUpdateManyWithoutRateRuleInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2047,6 +2677,9 @@ export type StayCreateManyPackageInput = {
   stayMode: $Enums.StayMode
   rateRuleId?: string | null
   stayPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: number
+  vehiclePlate?: string | null
+  notes?: string | null
   checkIn?: Date | string
   checkOut: Date | string
   actualCheckOut?: Date | string | null
@@ -2054,6 +2687,9 @@ export type StayCreateManyPackageInput = {
   reservationId?: string | null
   createdById: string
   checkedOutById?: string | null
+  cancelledAt?: Date | string | null
+  cancelledById?: string | null
+  cancelReason?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2062,10 +2698,15 @@ export type StayUpdateWithoutPackageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.EnumStayStatusFieldUpdateOperationsInput | $Enums.StayStatus
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   guest?: Prisma.GuestUpdateOneRequiredWithoutStaysNestedInput
@@ -2074,6 +2715,7 @@ export type StayUpdateWithoutPackageInput = {
   reservation?: Prisma.ReservationUpdateOneWithoutStayNestedInput
   createdBy?: Prisma.UserUpdateOneRequiredWithoutStaysCreatedNestedInput
   checkedOutBy?: Prisma.UserUpdateOneWithoutStaysCheckedOutNestedInput
+  cancelledBy?: Prisma.UserUpdateOneWithoutStaysCancelledNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutStayNestedInput
   sales?: Prisma.SaleUpdateManyWithoutStayNestedInput
 }
@@ -2085,6 +2727,9 @@ export type StayUncheckedUpdateWithoutPackageInput = {
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2092,6 +2737,9 @@ export type StayUncheckedUpdateWithoutPackageInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutStayNestedInput
@@ -2105,6 +2753,9 @@ export type StayUncheckedUpdateManyWithoutPackageInput = {
   stayMode?: Prisma.EnumStayModeFieldUpdateOperationsInput | $Enums.StayMode
   rateRuleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stayPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  guestCount?: Prisma.IntFieldUpdateOperationsInput | number
+  vehiclePlate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   checkIn?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   checkOut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actualCheckOut?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2112,6 +2763,9 @@ export type StayUncheckedUpdateManyWithoutPackageInput = {
   reservationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdById?: Prisma.StringFieldUpdateOperationsInput | string
   checkedOutById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelledAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cancelledById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cancelReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2164,6 +2818,9 @@ export type StaySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   rateRuleId?: boolean
   packageId?: boolean
   stayPrice?: boolean
+  guestCount?: boolean
+  vehiclePlate?: boolean
+  notes?: boolean
   checkIn?: boolean
   checkOut?: boolean
   actualCheckOut?: boolean
@@ -2171,6 +2828,9 @@ export type StaySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   reservationId?: boolean
   createdById?: boolean
   checkedOutById?: boolean
+  cancelledAt?: boolean
+  cancelledById?: boolean
+  cancelReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   guest?: boolean | Prisma.GuestDefaultArgs<ExtArgs>
@@ -2180,6 +2840,7 @@ export type StaySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   reservation?: boolean | Prisma.Stay$reservationArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   checkedOutBy?: boolean | Prisma.Stay$checkedOutByArgs<ExtArgs>
+  cancelledBy?: boolean | Prisma.Stay$cancelledByArgs<ExtArgs>
   payments?: boolean | Prisma.Stay$paymentsArgs<ExtArgs>
   sales?: boolean | Prisma.Stay$salesArgs<ExtArgs>
   _count?: boolean | Prisma.StayCountOutputTypeDefaultArgs<ExtArgs>
@@ -2193,6 +2854,9 @@ export type StaySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   rateRuleId?: boolean
   packageId?: boolean
   stayPrice?: boolean
+  guestCount?: boolean
+  vehiclePlate?: boolean
+  notes?: boolean
   checkIn?: boolean
   checkOut?: boolean
   actualCheckOut?: boolean
@@ -2200,6 +2864,9 @@ export type StaySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   reservationId?: boolean
   createdById?: boolean
   checkedOutById?: boolean
+  cancelledAt?: boolean
+  cancelledById?: boolean
+  cancelReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   guest?: boolean | Prisma.GuestDefaultArgs<ExtArgs>
@@ -2209,6 +2876,7 @@ export type StaySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   reservation?: boolean | Prisma.Stay$reservationArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   checkedOutBy?: boolean | Prisma.Stay$checkedOutByArgs<ExtArgs>
+  cancelledBy?: boolean | Prisma.Stay$cancelledByArgs<ExtArgs>
 }, ExtArgs["result"]["stay"]>
 
 export type StaySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2219,6 +2887,9 @@ export type StaySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   rateRuleId?: boolean
   packageId?: boolean
   stayPrice?: boolean
+  guestCount?: boolean
+  vehiclePlate?: boolean
+  notes?: boolean
   checkIn?: boolean
   checkOut?: boolean
   actualCheckOut?: boolean
@@ -2226,6 +2897,9 @@ export type StaySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   reservationId?: boolean
   createdById?: boolean
   checkedOutById?: boolean
+  cancelledAt?: boolean
+  cancelledById?: boolean
+  cancelReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   guest?: boolean | Prisma.GuestDefaultArgs<ExtArgs>
@@ -2235,6 +2909,7 @@ export type StaySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   reservation?: boolean | Prisma.Stay$reservationArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   checkedOutBy?: boolean | Prisma.Stay$checkedOutByArgs<ExtArgs>
+  cancelledBy?: boolean | Prisma.Stay$cancelledByArgs<ExtArgs>
 }, ExtArgs["result"]["stay"]>
 
 export type StaySelectScalar = {
@@ -2245,6 +2920,9 @@ export type StaySelectScalar = {
   rateRuleId?: boolean
   packageId?: boolean
   stayPrice?: boolean
+  guestCount?: boolean
+  vehiclePlate?: boolean
+  notes?: boolean
   checkIn?: boolean
   checkOut?: boolean
   actualCheckOut?: boolean
@@ -2252,11 +2930,14 @@ export type StaySelectScalar = {
   reservationId?: boolean
   createdById?: boolean
   checkedOutById?: boolean
+  cancelledAt?: boolean
+  cancelledById?: boolean
+  cancelReason?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StayOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "guestId" | "roomId" | "stayMode" | "rateRuleId" | "packageId" | "stayPrice" | "checkIn" | "checkOut" | "actualCheckOut" | "status" | "reservationId" | "createdById" | "checkedOutById" | "createdAt" | "updatedAt", ExtArgs["result"]["stay"]>
+export type StayOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "guestId" | "roomId" | "stayMode" | "rateRuleId" | "packageId" | "stayPrice" | "guestCount" | "vehiclePlate" | "notes" | "checkIn" | "checkOut" | "actualCheckOut" | "status" | "reservationId" | "createdById" | "checkedOutById" | "cancelledAt" | "cancelledById" | "cancelReason" | "createdAt" | "updatedAt", ExtArgs["result"]["stay"]>
 export type StayInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guest?: boolean | Prisma.GuestDefaultArgs<ExtArgs>
   room?: boolean | Prisma.RoomDefaultArgs<ExtArgs>
@@ -2265,6 +2946,7 @@ export type StayInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   reservation?: boolean | Prisma.Stay$reservationArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   checkedOutBy?: boolean | Prisma.Stay$checkedOutByArgs<ExtArgs>
+  cancelledBy?: boolean | Prisma.Stay$cancelledByArgs<ExtArgs>
   payments?: boolean | Prisma.Stay$paymentsArgs<ExtArgs>
   sales?: boolean | Prisma.Stay$salesArgs<ExtArgs>
   _count?: boolean | Prisma.StayCountOutputTypeDefaultArgs<ExtArgs>
@@ -2277,6 +2959,7 @@ export type StayIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   reservation?: boolean | Prisma.Stay$reservationArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   checkedOutBy?: boolean | Prisma.Stay$checkedOutByArgs<ExtArgs>
+  cancelledBy?: boolean | Prisma.Stay$cancelledByArgs<ExtArgs>
 }
 export type StayIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   guest?: boolean | Prisma.GuestDefaultArgs<ExtArgs>
@@ -2286,6 +2969,7 @@ export type StayIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   reservation?: boolean | Prisma.Stay$reservationArgs<ExtArgs>
   createdBy?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   checkedOutBy?: boolean | Prisma.Stay$checkedOutByArgs<ExtArgs>
+  cancelledBy?: boolean | Prisma.Stay$cancelledByArgs<ExtArgs>
 }
 
 export type $StayPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2298,6 +2982,7 @@ export type $StayPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     reservation: Prisma.$ReservationPayload<ExtArgs> | null
     createdBy: Prisma.$UserPayload<ExtArgs>
     checkedOutBy: Prisma.$UserPayload<ExtArgs> | null
+    cancelledBy: Prisma.$UserPayload<ExtArgs> | null
     payments: Prisma.$PaymentPayload<ExtArgs>[]
     sales: Prisma.$SalePayload<ExtArgs>[]
   }
@@ -2309,6 +2994,9 @@ export type $StayPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     rateRuleId: string | null
     packageId: string | null
     stayPrice: runtime.Decimal
+    guestCount: number
+    vehiclePlate: string | null
+    notes: string | null
     checkIn: Date
     checkOut: Date
     actualCheckOut: Date | null
@@ -2316,6 +3004,9 @@ export type $StayPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     reservationId: string | null
     createdById: string
     checkedOutById: string | null
+    cancelledAt: Date | null
+    cancelledById: string | null
+    cancelReason: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["stay"]>
@@ -2719,6 +3410,7 @@ export interface Prisma__StayClient<T, Null = never, ExtArgs extends runtime.Typ
   reservation<T extends Prisma.Stay$reservationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stay$reservationArgs<ExtArgs>>): Prisma.Prisma__ReservationClient<runtime.Types.Result.GetResult<Prisma.$ReservationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   createdBy<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   checkedOutBy<T extends Prisma.Stay$checkedOutByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stay$checkedOutByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  cancelledBy<T extends Prisma.Stay$cancelledByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stay$cancelledByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   payments<T extends Prisma.Stay$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stay$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sales<T extends Prisma.Stay$salesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stay$salesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2757,6 +3449,9 @@ export interface StayFieldRefs {
   readonly rateRuleId: Prisma.FieldRef<"Stay", 'String'>
   readonly packageId: Prisma.FieldRef<"Stay", 'String'>
   readonly stayPrice: Prisma.FieldRef<"Stay", 'Decimal'>
+  readonly guestCount: Prisma.FieldRef<"Stay", 'Int'>
+  readonly vehiclePlate: Prisma.FieldRef<"Stay", 'String'>
+  readonly notes: Prisma.FieldRef<"Stay", 'String'>
   readonly checkIn: Prisma.FieldRef<"Stay", 'DateTime'>
   readonly checkOut: Prisma.FieldRef<"Stay", 'DateTime'>
   readonly actualCheckOut: Prisma.FieldRef<"Stay", 'DateTime'>
@@ -2764,6 +3459,9 @@ export interface StayFieldRefs {
   readonly reservationId: Prisma.FieldRef<"Stay", 'String'>
   readonly createdById: Prisma.FieldRef<"Stay", 'String'>
   readonly checkedOutById: Prisma.FieldRef<"Stay", 'String'>
+  readonly cancelledAt: Prisma.FieldRef<"Stay", 'DateTime'>
+  readonly cancelledById: Prisma.FieldRef<"Stay", 'String'>
+  readonly cancelReason: Prisma.FieldRef<"Stay", 'String'>
   readonly createdAt: Prisma.FieldRef<"Stay", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Stay", 'DateTime'>
 }
@@ -3222,6 +3920,25 @@ export type Stay$reservationArgs<ExtArgs extends runtime.Types.Extensions.Intern
  * Stay.checkedOutBy
  */
 export type Stay$checkedOutByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
+ * Stay.cancelledBy
+ */
+export type Stay$cancelledByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

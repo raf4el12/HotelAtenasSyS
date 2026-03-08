@@ -1697,6 +1697,10 @@ export const RoomScalarFieldEnum = {
   number: 'number',
   category: 'category',
   status: 'status',
+  maxGuests: 'maxGuests',
+  bedType: 'bedType',
+  hasWindow: 'hasWindow',
+  notes: 'notes',
   floorId: 'floorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -1724,6 +1728,15 @@ export const GuestScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   phone: 'phone',
+  documentType: 'documentType',
+  nationality: 'nationality',
+  email: 'email',
+  dateOfBirth: 'dateOfBirth',
+  gender: 'gender',
+  address: 'address',
+  city: 'city',
+  country: 'country',
+  notes: 'notes',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1739,6 +1752,8 @@ export const RateRuleScalarFieldEnum = {
   category: 'category',
   price: 'price',
   durationMin: 'durationMin',
+  durationHours: 'durationHours',
+  extraHourPrice: 'extraHourPrice',
   validFrom: 'validFrom',
   validTo: 'validTo',
   priority: 'priority',
@@ -1806,6 +1821,8 @@ export const SaleScalarFieldEnum = {
   id: 'id',
   stayId: 'stayId',
   subtotal: 'subtotal',
+  status: 'status',
+  notes: 'notes',
   createdById: 'createdById',
   createdAt: 'createdAt'
 } as const
@@ -1833,6 +1850,9 @@ export const StayScalarFieldEnum = {
   rateRuleId: 'rateRuleId',
   packageId: 'packageId',
   stayPrice: 'stayPrice',
+  guestCount: 'guestCount',
+  vehiclePlate: 'vehiclePlate',
+  notes: 'notes',
   checkIn: 'checkIn',
   checkOut: 'checkOut',
   actualCheckOut: 'actualCheckOut',
@@ -1840,6 +1860,9 @@ export const StayScalarFieldEnum = {
   reservationId: 'reservationId',
   createdById: 'createdById',
   checkedOutById: 'checkedOutById',
+  cancelledAt: 'cancelledAt',
+  cancelledById: 'cancelledById',
+  cancelReason: 'cancelReason',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1857,6 +1880,13 @@ export const ReservationScalarFieldEnum = {
   estimatedPrice: 'estimatedPrice',
   status: 'status',
   notes: 'notes',
+  source: 'source',
+  contactPhone: 'contactPhone',
+  contactEmail: 'contactEmail',
+  guestCount: 'guestCount',
+  cancelledAt: 'cancelledAt',
+  cancelledById: 'cancelledById',
+  cancelReason: 'cancelReason',
   createdById: 'createdById',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1874,6 +1904,10 @@ export const PaymentScalarFieldEnum = {
   reservationId: 'reservationId',
   saleId: 'saleId',
   notes: 'notes',
+  referenceCode: 'referenceCode',
+  voidedAt: 'voidedAt',
+  voidedById: 'voidedById',
+  voidReason: 'voidReason',
   registeredById: 'registeredById',
   createdAt: 'createdAt'
 } as const
@@ -2017,6 +2051,48 @@ export type ListEnumRoomStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'BedType'
+ */
+export type EnumBedTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BedType'>
+    
+
+
+/**
+ * Reference to a field of type 'BedType[]'
+ */
+export type ListEnumBedTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BedType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DocumentType'
+ */
+export type EnumDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentType'>
+    
+
+
+/**
+ * Reference to a field of type 'DocumentType[]'
+ */
+export type ListEnumDocumentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DocumentType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Gender'
+ */
+export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+/**
+ * Reference to a field of type 'Gender[]'
+ */
+export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+/**
  * Reference to a field of type 'StayMode'
  */
 export type EnumStayModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StayMode'>
@@ -2073,6 +2149,20 @@ export type ListEnumProductStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'SaleStatus'
+ */
+export type EnumSaleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SaleStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SaleStatus[]'
+ */
+export type ListEnumSaleStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SaleStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'StayStatus'
  */
 export type EnumStayStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StayStatus'>
@@ -2097,6 +2187,20 @@ export type EnumReservationStatusFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'ReservationStatus[]'
  */
 export type ListEnumReservationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReservationStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ReservationSource'
+ */
+export type EnumReservationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReservationSource'>
+    
+
+
+/**
+ * Reference to a field of type 'ReservationSource[]'
+ */
+export type ListEnumReservationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReservationSource[]'>
     
 
 
