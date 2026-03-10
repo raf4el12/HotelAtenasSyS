@@ -46,7 +46,12 @@ export class PrismaGuestRepository implements IGuestRepository {
     }
 
     async create(data: CreateGuestData): Promise<GuestEntity> {
-        const guest = await this.prisma.guest.create({ data });
+        const guest = await this.prisma.guest.create({
+            data: {
+                ...data,
+                dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth) : undefined,
+            },
+        });
         return mapToGuestEntity(guest);
     }
 
@@ -84,7 +89,13 @@ export class PrismaGuestRepository implements IGuestRepository {
     }
 
     async update(id: string, data: UpdateGuestData): Promise<GuestEntity> {
-        const guest = await this.prisma.guest.update({ where: { id }, data });
+        const guest = await this.prisma.guest.update({
+            where: { id },
+            data: {
+                ...data,
+                dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth) : undefined,
+            },
+        });
         return mapToGuestEntity(guest);
     }
 }

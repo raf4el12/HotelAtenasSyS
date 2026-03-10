@@ -8,6 +8,15 @@ export function mapToGuestResponse(guest: GuestEntity): GuestResponseDto {
     response.firstName = guest.firstName;
     response.lastName = guest.lastName;
     response.phone = guest.phone;
+    response.documentType = guest.documentType;
+    response.nationality = guest.nationality;
+    response.email = guest.email;
+    response.dateOfBirth = guest.dateOfBirth;
+    response.gender = guest.gender;
+    response.address = guest.address;
+    response.city = guest.city;
+    response.country = guest.country;
+    response.notes = guest.notes;
     response.createdAt = guest.createdAt;
     response.updatedAt = guest.updatedAt;
     return response;

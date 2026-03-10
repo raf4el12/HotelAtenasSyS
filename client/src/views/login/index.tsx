@@ -6,33 +6,33 @@ export function LoginView() {
   return (
     <div className="flex min-h-screen">
       {/* Left panel — branding */}
-      <div className="relative hidden lg:flex lg:w-1/2 flex-col items-center justify-center overflow-hidden bg-sidebar">
+      <div className="relative hidden lg:flex lg:w-1/2 flex-col items-center justify-center overflow-hidden bg-sidebar noise-bg">
         {/* Decorative gradient orbs */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -left-40 h-80 w-80 rounded-full bg-amber-500/10 blur-3xl" />
-          <div className="absolute -bottom-40 -right-40 h-80 w-80 rounded-full bg-amber-600/10 blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-amber-500/5 blur-3xl" />
+          <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/8 blur-[100px]" />
+          <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-primary/6 blur-[100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/3 blur-[120px]" />
         </div>
 
-        {/* Grid pattern overlay */}
+        {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(245,158,11,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(245,158,11,0.3) 1px, transparent 1px)',
-            backgroundSize: '40px 40px',
+              'linear-gradient(hsl(38 92% 55% / 0.4) 1px, transparent 1px), linear-gradient(90deg, hsl(38 92% 55% / 0.4) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
           }}
         />
 
         <div className="relative z-10 flex flex-col items-center text-center px-12 max-w-lg">
           {/* Logo mark */}
-          <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-amber-500 shadow-2xl shadow-amber-500/40">
+          <div className="mb-10 flex h-20 w-20 items-center justify-center rounded-2xl bg-primary glow-amber">
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
-              className="h-10 w-10 text-white"
+              className="h-10 w-10 text-primary-foreground"
             >
               <path
                 strokeLinecap="round"
@@ -42,18 +42,20 @@ export function LoginView() {
             </svg>
           </div>
 
-          <h1 className="text-4xl font-bold text-white mb-3 tracking-tight">Hotel Atenas</h1>
-          <div className="mb-6 h-0.5 w-16 bg-amber-500 rounded-full" />
-          <p className="text-lg text-slate-300 font-medium mb-2">
+          <h1 className="font-[family-name:var(--font-display)] text-4xl font-semibold text-foreground mb-4 tracking-tight">
+            Hotel Atenas
+          </h1>
+          <div className="mb-6 h-px w-20 bg-gradient-to-r from-transparent via-primary to-transparent" />
+          <p className="text-lg text-muted-foreground font-medium mb-2">
             Sistema de Gestion Hotelera
           </p>
-          <p className="text-sm text-slate-500 leading-relaxed">
-            Administra reservas, estancias, habitaciones, punto de venta y mucho mas desde un
+          <p className="text-sm text-muted-foreground/60 leading-relaxed max-w-sm">
+            Administra reservas, estadias, habitaciones, punto de venta y mucho mas desde un
             solo lugar.
           </p>
 
           {/* Feature pills */}
-          <div className="mt-10 flex flex-wrap justify-center gap-2">
+          <div className="mt-12 flex flex-wrap justify-center gap-2">
             {[
               'Reservas',
               'Check-in / Check-out',
@@ -63,7 +65,7 @@ export function LoginView() {
             ].map((feature) => (
               <span
                 key={feature}
-                className="rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400"
+                className="rounded-full border border-primary/15 bg-primary/5 px-3.5 py-1.5 text-xs font-medium text-primary/80"
               >
                 {feature}
               </span>
@@ -77,13 +79,13 @@ export function LoginView() {
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="mb-8 flex flex-col items-center lg:hidden">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 shadow-lg shadow-amber-500/30 mb-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary glow-amber mb-3">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"
-                className="h-6 w-6 text-white"
+                className="h-6 w-6 text-primary-foreground"
               >
                 <path
                   strokeLinecap="round"
@@ -92,15 +94,15 @@ export function LoginView() {
                 />
               </svg>
             </div>
-            <p className="text-xl font-bold text-foreground">Hotel Atenas</p>
-            <p className="text-xs text-amber-600 font-semibold tracking-wider uppercase mt-0.5">
+            <p className="font-[family-name:var(--font-display)] text-xl font-semibold text-foreground">Hotel Atenas</p>
+            <p className="text-xs text-primary font-semibold tracking-[0.2em] uppercase mt-0.5">
               Property Management
             </p>
           </div>
 
           <LoginForm />
 
-          <p className="mt-6 text-center text-xs text-muted-foreground">
+          <p className="mt-8 text-center text-xs text-muted-foreground/50">
             Hotel Atenas PMS &copy; {new Date().getFullYear()}. Todos los derechos reservados.
           </p>
         </div>

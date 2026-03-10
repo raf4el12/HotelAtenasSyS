@@ -22,6 +22,13 @@ interface GuestsTableProps {
   onPageChange: (page: number) => void;
 }
 
+const DOC_TYPE_LABELS: Record<string, string> = {
+  DNI: 'DNI',
+  PASSPORT: 'Pasaporte',
+  CE: 'C.E.',
+  OTHER: 'Otro',
+};
+
 export function GuestsTable({
   guests,
   isLoading,
@@ -46,29 +53,36 @@ export function GuestsTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>DNI</TableHead>
+              <TableHead>Documento</TableHead>
               <TableHead>Nombre completo</TableHead>
               <TableHead>Telefono</TableHead>
               <TableHead>Correo</TableHead>
+              <TableHead>Nacionalidad</TableHead>
               <TableHead className="text-right">Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {guests.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                   No se encontraron huespedes
                 </TableCell>
               </TableRow>
             ) : (
               guests.map((guest) => (
                 <TableRow key={guest.id}>
-                  <TableCell className="font-medium">{guest.dni}</TableCell>
+                  <TableCell className="font-medium">
+                    <span className="text-muted-foreground text-xs mr-1.5">
+                      {DOC_TYPE_LABELS[guest.documentType ?? 'DNI'] ?? guest.documentType}
+                    </span>
+                    {guest.dni}
+                  </TableCell>
                   <TableCell>
                     {guest.firstName} {guest.lastName}
                   </TableCell>
                   <TableCell>{guest.phone ?? '-'}</TableCell>
                   <TableCell>{guest.email ?? '-'}</TableCell>
+                  <TableCell>{guest.nationality ?? '-'}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="ghost" size="icon" onClick={() => onEdit(guest)}>
                       <Pencil className="h-4 w-4" />

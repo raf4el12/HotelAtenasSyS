@@ -10,6 +10,14 @@ export const guestSchema = z.object({
     .email('Ingresa un correo electronico valido')
     .optional()
     .or(z.literal('')),
+  documentType: z.string().optional(),
+  nationality: z.string().optional(),
+  dateOfBirth: z.string().optional(),
+  gender: z.string().optional(),
+  address: z.string().optional(),
+  city: z.string().optional(),
+  country: z.string().optional(),
+  notes: z.string().optional(),
 });
 
 export type GuestFormData = z.infer<typeof guestSchema>;

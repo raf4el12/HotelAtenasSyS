@@ -23,4 +23,12 @@ export interface CreateGuestPayload {
   lastName: string;
   phone?: string;
   email?: string;
+  documentType?: string;
+  nationality?: string;
+  dateOfBirth?: string;
+  gender?: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  notes?: string;
 }

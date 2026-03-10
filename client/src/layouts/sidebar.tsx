@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ChevronLeft, ChevronRight, Hotel, Menu } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { sidebarItems } from './sidebar-items';
 import { useAppSelector } from '@/redux-store/hooks';
@@ -29,7 +29,7 @@ function SidebarNav({ collapsed }: SidebarNavProps) {
   );
 
   return (
-    <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-1">
+    <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-0.5">
       <TooltipProvider delayDuration={0}>
         {visibleItems.map((item) => {
           const Icon = item.icon;
@@ -41,30 +41,30 @@ function SidebarNav({ collapsed }: SidebarNavProps) {
                 <Link
                   href={item.href}
                   className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200',
+                    'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200',
                     isActive
-                      ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                      : 'text-slate-400 hover:bg-slate-800 hover:text-slate-100',
+                      ? 'bg-primary/12 text-primary'
+                      : 'text-sidebar-muted-foreground hover:bg-sidebar-muted hover:text-sidebar-foreground',
                     collapsed && 'justify-center px-2',
                   )}
                 >
+                  {isActive && (
+                    <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-primary" />
+                  )}
                   <Icon
                     className={cn(
-                      'shrink-0 transition-colors',
-                      isActive ? 'text-amber-400' : 'text-slate-500 group-hover:text-slate-300',
-                      collapsed ? 'h-5 w-5' : 'h-4 w-4',
+                      'shrink-0 transition-colors duration-200',
+                      isActive ? 'text-primary' : 'text-sidebar-muted-foreground group-hover:text-sidebar-foreground',
+                      collapsed ? 'h-5 w-5' : 'h-[18px] w-[18px]',
                     )}
                   />
                   {!collapsed && (
                     <span className="truncate">{item.title}</span>
                   )}
-                  {isActive && !collapsed && (
-                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-amber-400" />
-                  )}
                 </Link>
               </TooltipTrigger>
               {collapsed && (
-                <TooltipContent side="right" className="bg-slate-800 text-slate-100 border-slate-700">
+                <TooltipContent side="right" className="bg-card text-foreground border-border">
                   {item.title}
                 </TooltipContent>
               )}
@@ -98,16 +98,16 @@ function SidebarUser({ collapsed }: SidebarUserProps) {
         collapsed && 'justify-center',
       )}
     >
-      <Avatar className="h-8 w-8 shrink-0 ring-2 ring-amber-500/30">
+      <Avatar className="h-8 w-8 shrink-0 ring-2 ring-primary/20">
         <AvatarImage src={user?.profile?.avatarUrl} alt={fullName} />
-        <AvatarFallback className="bg-amber-500/20 text-amber-400 text-xs font-semibold">
+        <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
           {initials}
         </AvatarFallback>
       </Avatar>
       {!collapsed && (
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium text-slate-100">{fullName}</p>
-          <p className="truncate text-xs text-slate-500">{user?.role}</p>
+          <p className="truncate text-sm font-medium text-sidebar-foreground">{fullName}</p>
+          <p className="truncate text-[11px] text-sidebar-muted-foreground">{user?.role}</p>
         </div>
       )}
     </div>
@@ -122,23 +122,38 @@ interface SidebarInnerProps {
 
 function SidebarInner({ collapsed, onToggle, showToggle = true }: SidebarInnerProps) {
   return (
-    <div className="flex h-full flex-col bg-sidebar">
+    <div className="relative flex h-full flex-col bg-sidebar noise-bg">
+      {/* Subtle top gradient accent */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
       <div
         className={cn(
-          'flex items-center border-b border-sidebar-border px-3 py-4',
+          'relative z-10 flex items-center border-b border-sidebar-border px-3 py-5',
           collapsed ? 'justify-center' : 'justify-between',
         )}
       >
-        <div className={cn('flex items-center gap-2.5', collapsed && 'justify-center')}>
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-500 shadow-lg shadow-amber-500/30">
-            <Hotel className="h-4 w-4 text-white" />
+        <div className={cn('flex items-center gap-3', collapsed && 'justify-center')}>
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary glow-amber">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              className="h-[18px] w-[18px] text-primary-foreground"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
+              />
+            </svg>
           </div>
           {!collapsed && (
             <div>
-              <p className="text-sm font-bold text-slate-100 leading-tight">
+              <p className="text-sm font-bold text-sidebar-foreground leading-tight tracking-tight">
                 {themeConfig.templateName}
               </p>
-              <p className="text-[10px] text-amber-500 font-medium tracking-wider uppercase">
+              <p className="text-[10px] text-primary font-semibold tracking-[0.2em] uppercase">
                 PMS
               </p>
             </div>
@@ -147,7 +162,7 @@ function SidebarInner({ collapsed, onToggle, showToggle = true }: SidebarInnerPr
         {showToggle && onToggle && (
           <button
             onClick={onToggle}
-            className="rounded-md p-1 text-slate-500 hover:bg-slate-800 hover:text-slate-300 transition-colors"
+            className="rounded-md p-1.5 text-sidebar-muted-foreground hover:bg-sidebar-muted hover:text-sidebar-foreground transition-colors"
             aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {collapsed ? (
@@ -159,8 +174,10 @@ function SidebarInner({ collapsed, onToggle, showToggle = true }: SidebarInnerPr
         )}
       </div>
 
-      <SidebarNav collapsed={collapsed} />
-      <SidebarUser collapsed={collapsed} />
+      <div className="relative z-10 flex-1 flex flex-col">
+        <SidebarNav collapsed={collapsed} />
+        <SidebarUser collapsed={collapsed} />
+      </div>
     </div>
   );
 }

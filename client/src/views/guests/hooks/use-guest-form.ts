@@ -12,6 +12,14 @@ export function useGuestForm(guest?: Guest) {
       lastName: guest?.lastName ?? '',
       phone: guest?.phone ?? '',
       email: guest?.email ?? '',
+      documentType: guest?.documentType ?? '',
+      nationality: guest?.nationality ?? '',
+      dateOfBirth: guest?.dateOfBirth ? guest.dateOfBirth.split('T')[0] : '',
+      gender: guest?.gender ?? '',
+      address: guest?.address ?? '',
+      city: guest?.city ?? '',
+      country: guest?.country ?? '',
+      notes: guest?.notes ?? '',
     },
   });
 }
